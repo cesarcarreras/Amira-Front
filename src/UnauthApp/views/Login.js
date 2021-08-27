@@ -4,7 +4,7 @@ import { useAuth } from '../../AuthContext.js';
 import {Box, useToast} from '@chakra-ui/react';
 import handleAsync from '../../utils/handleAsync.js';
 import { useInput } from '../../hooks/useInput.js';
-import { loginEP, signupEP } from '../../services/auth-ws.js';
+import { loginEP } from '../../services/auth-ws.js';
 
 export default function Login(props){
     const toast = useToast()
@@ -18,6 +18,7 @@ export default function Login(props){
     const handleLogin = async e => {
         e.preventDefault()
         setLoading(true)
+
         const data = {
             email: email.value,
             password: password.value

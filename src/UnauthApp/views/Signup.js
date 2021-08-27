@@ -27,7 +27,8 @@ export default function Signup(props){
             name: name.value,
             email: email.value,
             password: password.value,
-            birthday: birthday.value
+            birthday: birthday.value,
+            role: role.value
         }
 
         const {user} = await handleAsync(() => signupEP(data))
@@ -47,8 +48,6 @@ export default function Signup(props){
             })
         }
     };
-
-
 
     const inputs = [
         {
@@ -80,7 +79,6 @@ export default function Signup(props){
         },
 
     ]
-
     return(
         <Box
             as="main"
