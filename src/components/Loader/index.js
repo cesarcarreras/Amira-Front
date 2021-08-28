@@ -1,7 +1,7 @@
 import React from 'react'
 import { Flex, Spinner } from '@chakra-ui/react'
 
-export const Loader = () => (
+const Loader = () => (
     <Flex w="100%" h="100vh" boxSizing="border-box" align="center" justify="center">
         <Spinner
             thickness="8px"
@@ -12,3 +12,5 @@ export const Loader = () => (
         />
     </Flex>
 )
+
+export default Loader

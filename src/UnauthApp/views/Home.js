@@ -1,7 +1,7 @@
 import React from 'react'
-import Banner from '../../components/Banner'
-import Featured from '../../components/Featured'
-import NavBar from '../../components/Navbar'
+import {Banner} from '@components'
+import {NavBar} from '@components'
+import {Featured} from '@components'
 
 const Home = () => {
     return(
