@@ -1,5 +1,6 @@
 import React from 'react'
 import Banner from '../../components/Banner'
+import Featured from '../../components/Featured'
 import NavBar from '../../components/Navbar'
 
 const Home = () => {
@@ -7,6 +8,7 @@ const Home = () => {
         <>
             <NavBar/>
             <Banner/>
+            <Featured/>
         </>
     )
 }
