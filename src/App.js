@@ -1,17 +1,17 @@
 import React, {Suspense, lazy} from 'react';
-import { Loader } from './components/Loader';
 import { useAuth } from './AuthContext';
+import { Loader } from './components/Loader';
 
 
 export const App = () => {
 
     const [{user}] = useAuth();
-    // const AuthApp = lazy(() => import('./AuthApp'));
+    const AuthApp = lazy(() => import('./AuthApp'));
     const UnauthApp = lazy(() => import('./UnauthApp'));
 
     return user ? (
         <Suspense fallback={<Loader/>}>
-          {/* <AuthApp/> */}
+          <AuthApp/>
         </Suspense>
     ) : (
         <Suspense fallback={<Loader/>}>

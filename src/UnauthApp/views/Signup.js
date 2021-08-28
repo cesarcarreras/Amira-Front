@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import AuthForm from '../../components/AuthForm.js/index.js';
+import AuthForm from '../../components/AuthForm/index.js';
 import { useAuth } from '../../AuthContext.js';
 import {Box, useToast} from '@chakra-ui/react';
 import handleAsync from '../../utils/handleAsync.js';
@@ -33,10 +33,20 @@ export default function Signup(props){
 
         const {user} = await handleAsync(() => signupEP(data))
 
-        setLoading(false)
-
+        console.log(user)
         if(user){
-            history.push('/')
+            toast({
+                position: 'top-right',
+                title: "Cuenta creada correctamente",
+                status: 'success',
+                duration: 3000,
+                isClosable: true
+            })
+            setLoading(false)
+            setTimeout(() => {
+                history.push('/')
+            }, 1000)
+
         }else{
             toast({
                 position: 'top-right',
@@ -46,6 +56,7 @@ export default function Signup(props){
                 duration: 3000,
                 isClosable: true
             })
+            setLoading(false)
         }
     };
 
