@@ -2,12 +2,9 @@ import React from 'react';
 import {
   Box,
   Heading,
-  Container,
   Text,
   Button,
   Stack,
-  Icon,
-  useColorModeValue,
 } from '@chakra-ui/react';
 
 import bgPicture from '../../assets/images/tropical-green-leaves-background-min.jpg'

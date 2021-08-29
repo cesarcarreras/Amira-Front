@@ -1,5 +1,5 @@
 import React from 'react'
-import {Flex, Heading, Text, Input, InputGroup, Icon, Button, Box} from '@chakra-ui/react'
+import {Flex, Heading, Text, Input, InputGroup, Button, Box} from '@chakra-ui/react'
 import {Link} from 'react-router-dom'
 
 function AuthForm(props){

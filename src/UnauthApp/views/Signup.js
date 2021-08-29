@@ -1,6 +1,5 @@
 import React, {useState} from 'react';
 import {AuthForm} from '@components';
-import { useAuth } from '../../AuthContext.js';
 import {Box, useToast} from '@chakra-ui/react';
 import handleAsync from '../../utils/handleAsync.js';
 import useInput from '@hooks/useInput.js';
@@ -9,8 +8,6 @@ import { useHistory } from 'react-router-dom';
 
 export default function Signup(props){
     const toast = useToast()
-    const [, dispatch] = useAuth()
-
     const name = useInput('')
     const email = useInput('')
     const password = useInput('')
