@@ -14,7 +14,13 @@ import {
     Modal,
     ModalContent,
     ModalOverlay,
-    ModalFooter
+    ModalFooter,
+    Input,
+    FormLabel,
+    FormControl,
+    ModalBody,
+    ModalCloseButton,
+    ModalHeader
   } from '@chakra-ui/react';
 
   import soapImg from '../../assets/images/product-soap.png';
