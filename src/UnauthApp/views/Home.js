@@ -1,5 +1,5 @@
 import React from 'react'
-import {Banner, NavBar, Featured, ProductCard} from '@components'
+import {Banner, NavBar, Featured, ProductCard, Footer} from '@components'
 import { Flex } from '@chakra-ui/react'
 
 const Home = () => {
@@ -16,6 +16,7 @@ const Home = () => {
             <ProductCard />
             <ProductCard />
             </Flex>
+            <Footer/>
         </>
     )
 }
