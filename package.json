@@ -42,6 +42,9 @@
   },
   "_moduleAliases": {
     "@components": "./src/components",
-    "@services": "./src/services"
+    "@services": "./src/services",
+    "@hooks" : "./src/hooks",
+    "@utils" : "./src/utils",
+    "@assets" : "./src/assets"
   }
 }

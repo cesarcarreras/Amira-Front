@@ -1,7 +1,7 @@
 import React, { useReducer, createContext, useEffect, useContext } from 'react';
-import { Loader } from './components/Loader';
-import { currentUserEP } from './services/auth-ws';
-import handleAsync from './utils/handleAsync';
+import { Loader } from '@components';
+import { currentUserEP } from '@services/auth-ws';
+import handleAsync from '@utils/handleAsync';
 
 
 export const AuthStateContext = createContext({});
