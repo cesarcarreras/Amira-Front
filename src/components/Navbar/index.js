@@ -9,7 +9,7 @@ import {
 } from '@chakra-ui/react';
 
 
-import Logo from '../../assets/images/logo.jpg'
+import Logo from '@assets/images/logo.jpg'
 
 
 export default function Navbar(props) {

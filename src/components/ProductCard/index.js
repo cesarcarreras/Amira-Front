@@ -15,15 +15,16 @@ import {
     ModalContent,
     ModalOverlay,
     ModalFooter,
-    Input,
-    FormLabel,
-    FormControl,
+    Image,
     ModalBody,
     ModalCloseButton,
-    ModalHeader
+    ModalHeader,
+    Badge,
+    Container,
+    Flex
   } from '@chakra-ui/react';
 
-  import soapImg from '../../assets/images/product-soap.png';
+  import soapImg from '@assets/images/product-soap.png';
 
 
   export default function ProductCard() {
@@ -52,6 +53,9 @@ import {
           />
           <Heading fontSize={'2xl'} fontFamily={'body'}>
             Jabón de Lavanda
+            <Badge ml="1" colorScheme="green">
+        New
+      </Badge>
           </Heading>
 
           <Text
@@ -81,20 +85,24 @@ import {
       >
         <ModalOverlay />
         <ModalContent>
-          <ModalHeader>Create your account</ModalHeader>
+          <ModalHeader>Jabón de Algo</ModalHeader>
           <ModalCloseButton />
           <ModalBody pb={6}>
-            <FormControl>
-              <FormLabel>First name</FormLabel>
-              <Input ref={initialRef} placeholder="First name" />
-            </FormControl>
+          <Flex justifyContent="center" alignContent="center" alignItems="center">
+          <Image src={soapImg} alt="Soap image" borderRadius="full" boxSize="150px" />
+          <Container>
+            There are many benefits to a joint design and development system. Not only
+            does it bring benefits to the design team, but it also brings benefits to
+            engineering teams.
+        </Container>
+        </Flex>
           </ModalBody>
 
           <ModalFooter>
             <Button colorScheme="blue" mr={3}>
-              Save
+              Comprar
             </Button>
-            <Button onClick={onClose}>Cancel</Button>
+            <Button onClick={onClose}>Cerrar</Button>
           </ModalFooter>
         </ModalContent>
       </Modal>
