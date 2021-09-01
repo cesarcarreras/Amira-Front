@@ -8,11 +8,13 @@ import { useHistory } from 'react-router-dom';
 
 export default function Signup(props){
     const toast = useToast()
+
     const name = useInput('')
     const email = useInput('')
     const password = useInput('')
     const birthday = useInput('')
     const role = useInput('ADMIN')
+
     const history = useHistory()
 
     const [loading, setLoading] = useState(false)
@@ -37,11 +39,10 @@ export default function Signup(props){
                 title: "Cuenta creada correctamente",
                 status: 'success',
                 duration: 3000,
-                isClosable: true
             })
             setLoading(false)
             setTimeout(() => {
-                history.push('/')
+                history.push('/dashboard/home')
             }, 1000)
 
         }else{

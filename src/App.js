@@ -5,8 +5,8 @@ import { Loader } from '@components';
 export const App = () => {
 
     const [{user}] = useAuth();
-    const AuthApp = lazy(() => import('./AuthApp'));
-    const UnauthApp = lazy(() => import('./UnauthApp'));
+    const AuthApp = lazy(() => import('./AuthApp/Routes'));
+    const UnauthApp = lazy(() => import('./UnauthApp/Routes'));
 
     return user ? (
         <Suspense fallback={<Loader/>}>

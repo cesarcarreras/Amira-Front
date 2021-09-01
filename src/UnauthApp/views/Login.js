@@ -5,10 +5,12 @@ import {Box, useToast} from '@chakra-ui/react';
 import { useAuth } from '../../AuthContext.js';
 import handleAsync from '@utils/handleAsync.js';
 import { loginEP } from '@services/auth-ws.js';
+import { useHistory } from 'react-router-dom';
 
 export default function Login(props){
     const toast = useToast()
     const [, dispatch] = useAuth()
+    const history = useHistory()
 
     const email = useInput('')
     const password = useInput('')
@@ -29,6 +31,16 @@ export default function Login(props){
         setLoading(false)
         if(user){
             dispatch({type: 'LOGIN', payload: {user}})
+            toast({
+                position: 'top-right',
+                title: "Login exitoso",
+                status: 'success',
+                duration: 3000,
+            })
+            setLoading(false)
+            setTimeout(() => {
+                history.push('/dashboard/home')
+            }, 1000)
         }else{
             toast({
                 position: 'top-right',
