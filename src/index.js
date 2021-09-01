@@ -5,7 +5,7 @@ import * as serviceWorker from './serviceWorker';
 import {CSSReset, ThemeProvider} from '@chakra-ui/react';
 import theme from './theme.js';
 import {BrowserRouter} from 'react-router-dom';
-import { AuthProvider } from './AuthContext';
+import { AuthProvider } from '@utils/AuthContext';
 import { App } from './App';
 
 ReactDOM.render(

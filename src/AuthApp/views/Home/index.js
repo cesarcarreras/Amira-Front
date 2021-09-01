@@ -1,8 +1,8 @@
 import React from 'react';
 import {Sidebar} from '@components';
-import {useAuth} from '../../AuthContext';
+import {useAuth} from '../../../utils/AuthContext';
 
-export const Home = () => {
+const Home = () => {
     const [{user}] = useAuth()
     return(
         <div>
@@ -14,3 +14,5 @@ export const Home = () => {
         </div>
     )
 };
+
+export default Home

@@ -3,7 +3,6 @@ import { Loader } from '@components';
 import { currentUserEP } from '@services/auth-ws';
 import handleAsync from '@utils/handleAsync';
 
-
 export const AuthStateContext = createContext({});
 
 const initialState = {

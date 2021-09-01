@@ -1,14 +1,16 @@
 import React from 'react';
-import {useAuth} from '../../AuthContext';
+import {useAuth} from '../../../utils/AuthContext';
 
-export const Profile = () => {
+const Profile = () => {
 
     const [{user}] = useAuth()
     console.log(user)
     return(
         <div>
             <h1>¡Hola, {user.name}!</h1>
-            <img src={user.img} />
+            <img src={user.img} alt="User Profile"/>
         </div>
     )
 };
+
+export default Profile;

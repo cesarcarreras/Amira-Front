@@ -1,11 +1,11 @@
 import React, {useState} from 'react';
+import { useHistory } from 'react-router-dom';
 import {AuthForm} from '@components';
 import useInput from '@hooks/useInput.js';
 import {Box, useToast} from '@chakra-ui/react';
-import { useAuth } from '../../AuthContext.js';
+import { useAuth } from '@utils/AuthContext.js';
 import handleAsync from '@utils/handleAsync.js';
 import { loginEP } from '@services/auth-ws.js';
-import { useHistory } from 'react-router-dom';
 
 export default function Login(props){
     const toast = useToast()

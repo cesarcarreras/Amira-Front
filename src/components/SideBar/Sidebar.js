@@ -22,7 +22,7 @@ export default function Sidebar(props){
               <Flex p="5%"
                     direction="column"
                     w="100%"
-                    alignItems={navSize == "small" ? "center" : "flex-start"}
+                    alignItems={navSize === "small" ? "center" : "flex-start"}
                     as="nav"
                     >
                 <IconButton
@@ -32,12 +32,12 @@ export default function Sidebar(props){
                     icon={<HamburgerIcon />}
                     onClick={() => navSize === 'small' ? changeNavSize('large') : changeNavSize('small')}/>
 
-                    <NavItem navSize={navSize} icon={PhoneIcon} title="Home" active description="Esta es la página principal" />
-                    <NavItem navSize={navSize} icon={SearchIcon} title="Customers" />
-                    <NavItem navSize={navSize} icon={EmailIcon} title="Products" />
+                    <NavItem navSize={navSize} icon={PhoneIcon} path="/dashboard/home" title="Home" active description="Esta es la página principal" />
+                    <NavItem navSize={navSize} icon={SearchIcon} path="/dashboard/products" title="Products" />
+                    <NavItem navSize={navSize} icon={EmailIcon} title="Customers" />
                     <NavItem navSize={navSize} icon={StarIcon} title="Tracker" />
-                    <NavItem navSize={navSize} icon={SettingsIcon} title="Settings" />
-                    <NavItem navSize={navSize} icon={MinusIcon} title="Logout" />
+                    <NavItem navSize={navSize} icon={SettingsIcon} path="/dashboard/profile" title="Settings" />
+                    <NavItem navSize={navSize} icon={MinusIcon} path="/dashboard/logout" title="Logout" />
 
               </Flex>
 

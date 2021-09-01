@@ -6,7 +6,5 @@ export {default as NavBar} from './Navbar';
 export {default as ProductCard} from './ProductCard';
 export {default as Footer} from './Footer';
 export {default as Newsletter} from './Newsletter';
-export {default as PageSection} from './Layout/PageSection';
-export {default as MenuRight} from './Layout/MenuRight';
 export {default as NotFound} from './NotFound';
-export {default as Sidebar} from './SideBar/Sidebar'
+export {default as Sidebar} from './SideBar/Sidebar';
