@@ -1,19 +1,46 @@
-import React from 'react';
-import {Switch, Route, Redirect} from 'react-router-dom';
-import { NotFound } from '../components';
-import { Home, Products, Profile } from './views';
+import React from 'react'
+import { NotFound } from '@components'
+import NavItem from '../components/SideBarTest/NavItemTest'
+import { Home, Products, Profile } from './views'
 
 
-function AuthApp(){
-    return(
-        <Switch>
-            <Route exact path= "/dashboard/home" component={Home}/>
-            <Route exact path= "/dashboard/profile" component={Profile}/>
-            <Route exact path= "/dashboard/products" component={Products}/>
-            <Route exact path= "/dashboard/404" component={NotFound}/>
-            <Redirect to="/dashboard/404"/>
-        </Switch>
-    )
-};
-
-export default AuthApp;
+export default [
+    {
+        path: '/dashboard/home',
+        label: 'Dashboard',
+        type: 'menu',
+        Component: () =>(
+        <NavItem>
+          <Home/>
+        </NavItem>
+        )
+    },
+    {
+        path: '/dashboard/products',
+        label: 'Products',
+        type: 'menu',
+        Component: () =>(
+        <NavItem>
+          <Products/>
+        </NavItem>
+        )
+    },
+    {
+        path: '/dashboard/404',
+        label: 'Not found',
+        type: 'none',
+        Component: () =>(
+            <NotFound/>
+        )
+    },
+    {
+        path: '/dashboard/profile',
+        label: 'Profile',
+        type: 'menu',
+        Component: () =>(
+            <NavItem>
+            <Profile/>
+          </NavItem>
+        )
+    }
+]

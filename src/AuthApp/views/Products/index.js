@@ -1,17 +1,13 @@
 import React from 'react';
 import { Sidebar } from '@components';
 import {useAuth} from '../../../utils/AuthContext';
+import { Flex } from '@chakra-ui/react';
 
 const Products = () => {
     const [{user}] = useAuth()
     return(
         <>
-                        <h1>Aquí van los products</h1>
-        <Sidebar
-        name = {user.name}
-        role = {user.role}
-        img = {user.img}
-    />
+
         </>
     )
 };

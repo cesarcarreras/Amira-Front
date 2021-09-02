@@ -7,4 +7,5 @@ export {default as ProductCard} from './ProductCard';
 export {default as Footer} from './Footer';
 export {default as Newsletter} from './Newsletter';
 export {default as NotFound} from './NotFound';
-export {default as Sidebar} from './SideBar/Sidebar';
+export {default as Sidebar} from './SideBarTest/SideBarTest';
+export {default as NavItem} from './SideBarTest/NavItemTest';

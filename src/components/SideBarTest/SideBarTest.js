@@ -1,12 +1,28 @@
 import React, {useState} from 'react';
-import { Avatar, IconButton, Divider, Flex, Heading, Text } from '@chakra-ui/react';
-import { HamburgerIcon, PhoneIcon, SearchIcon, EmailIcon, StarIcon, SettingsIcon, MinusIcon } from '@chakra-ui/icons'
-import NavItem from './NavItem';
+import { Avatar, IconButton, Divider, Flex, Heading, Text, Box } from '@chakra-ui/react';
+import { NavLink } from 'react-router-dom';
+import { HamburgerIcon} from '@chakra-ui/icons'
+import {useAuth} from '@utils/AuthContext'
+import Routes from '../../AuthApp/Routes'
+
 
 
 export default function Sidebar(props){
-
     const [navSize, changeNavSize] = useState('large')
+
+    const [, dispatch] = useAuth()
+    const [{user}] = useAuth()
+
+    const setLinks = () =>{
+        return Routes.map(function({label, path, type}){
+            if(type==='menu')
+            return <Box key={path} fontSize={['sm', 'md', 'lg', 'xl']} mt={[3,3,5,5]} mb={[3,3,5,5]}>
+                        <NavLink activeStyle={{fontWeight: 'bold'}} style={{color:'black'}} exact to={path}>
+                            {label}
+                        </NavLink>
+                    </Box>
+        })
+    }
 
     return(
         <Flex pos="sticky"
@@ -32,12 +48,7 @@ export default function Sidebar(props){
                     icon={<HamburgerIcon />}
                     onClick={() => navSize === 'small' ? changeNavSize('large') : changeNavSize('small')}/>
 
-                    <NavItem navSize={navSize} icon={PhoneIcon} path="/dashboard/home" title="Home" active description="Esta es la página principal" />
-                    <NavItem navSize={navSize} icon={SearchIcon} path="/dashboard/products" title="Products" />
-                    <NavItem navSize={navSize} icon={EmailIcon} title="Customers" />
-                    <NavItem navSize={navSize} icon={StarIcon} title="Tracker" />
-                    <NavItem navSize={navSize} icon={SettingsIcon} path="/dashboard/profile" title="Settings" />
-                    <NavItem navSize={navSize} icon={MinusIcon} path="/dashboard/logout" title="Logout" />
+                    {setLinks()}
 
               </Flex>
 
@@ -49,10 +60,10 @@ export default function Sidebar(props){
 
                     <Divider display={navSize === 'small' ? "none" : "flex"}/>
                         <Flex mt={4} align="center">
-                            <Avatar size="sm" src={props.img}/>
+                            <Avatar size="sm" src={user.img}/>
                             <Flex direction="column" ml={4} display={navSize === 'small' ? "none" : "flex"}>
-                                <Heading as="h3" size="sm">{props.name}</Heading>
-                                <Text color="gray.200">{props.role}</Text>
+                                <Heading as="h3" size="sm">{user.name}</Heading>
+                                <Text color="gray.200">{user.role}</Text>
                             </Flex>
                         </Flex>
               </Flex>

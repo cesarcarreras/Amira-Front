@@ -1,5 +1,4 @@
 import { Flex, Menu, MenuButton, Link, Icon, Text, MenuList } from '@chakra-ui/react';
-import NavHoverBox from './NavHoverBox';
 import React from 'react';
 
 export default function NavItem({navSize, icon, title, active, description, path}){
@@ -30,7 +29,6 @@ export default function NavItem({navSize, icon, title, active, description, path
                           w={200}
                           h={200}
                           ml={5}>
-                  <NavHoverBox title={title} icon={icon} description={description} />
                 </MenuList>
               </Menu>
         </Flex>

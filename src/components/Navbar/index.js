@@ -32,10 +32,8 @@ export default function Navbar(props) {
 </Stack>
     <Spacer />
     <Box>
-        <Button colorScheme="teal" mr="4">
-        Sign Up
-        </Button>
-        <Button colorScheme="teal">Log in</Button>
+        <Button as="a" href="/signup" colorScheme="teal" mr="4">Sign Up</Button>
+        <Button as="a" href="/login" colorScheme="teal">Log in</Button>
     </Box>
     </Flex>
   );
