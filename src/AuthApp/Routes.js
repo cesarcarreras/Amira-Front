@@ -1,6 +1,6 @@
 import React from 'react'
 import { NotFound } from '@components'
-import NavItem from '../components/SideBarTest/NavItemTest'
+import PageSection from '../components/Layout/PageSection'
 import { Home, Products, Profile } from './views'
 
 
@@ -10,9 +10,9 @@ export default [
         label: 'Dashboard',
         type: 'menu',
         Component: () =>(
-        <NavItem>
+        <PageSection>
           <Home/>
-        </NavItem>
+        </PageSection>
         )
     },
     {
@@ -20,9 +20,19 @@ export default [
         label: 'Products',
         type: 'menu',
         Component: () =>(
-        <NavItem>
+        <PageSection>
           <Products/>
-        </NavItem>
+        </PageSection>
+        )
+    },
+    {
+        path: '/dashboard/clients',
+        label: 'Clients',
+        type: 'menu',
+        Component: () =>(
+            <PageSection>
+            <Profile/>
+          </PageSection>
         )
     },
     {
@@ -38,9 +48,9 @@ export default [
         label: 'Profile',
         type: 'menu',
         Component: () =>(
-            <NavItem>
+            <PageSection>
             <Profile/>
-          </NavItem>
+          </PageSection>
         )
     }
 ]

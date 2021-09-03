@@ -1,6 +1,6 @@
 import React from 'react'
 import {Switch, Route, Redirect} from 'react-router-dom'
-import Sidebar from '../components/SideBarTest/SideBarTest'
+import Sidebar from '@components/Layout/Sidebar'
 import Routes from './Routes.js'
 
 export default function AuthApp(){
