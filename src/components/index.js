@@ -9,3 +9,4 @@ export {default as Newsletter} from './Newsletter';
 export {default as NotFound} from './NotFound';
 export {default as Sidebar} from './Layout/Sidebar';
 export {default as PageSection} from './Layout/PageSection';
+export {default as Paypal} from './Paypal';
