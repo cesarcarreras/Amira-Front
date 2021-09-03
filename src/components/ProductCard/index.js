@@ -27,7 +27,7 @@ import {
   import soapImg from '@assets/images/product-soap.png';
 
 
-  export default function ProductCard() {
+  export default function ProductCard(props) {
 
     const { isOpen, onOpen, onClose } = useDisclosure()
 
@@ -52,7 +52,7 @@ import {
             pos={'relative'}
           />
           <Heading fontSize={'2xl'} fontFamily={'body'}>
-            Jabón de Lavanda
+            {props.title}
             <Badge ml="1" colorScheme="green">
         New
       </Badge>
@@ -62,7 +62,7 @@ import {
             textAlign={'center'}
             color={useColorModeValue('gray.700', 'gray.400')}
             px={1}>
-            Hecho naturalmente con muchas cosas
+              {props.description}
           </Text>
 
           <Stack mt={8} direction={'row'} spacing={4}>

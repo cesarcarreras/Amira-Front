@@ -1,14 +1,20 @@
-import React from 'react';
-import {Switch, Route, Redirect} from 'react-router-dom';
+import React from 'react'
+import {Switch, Route, Redirect} from 'react-router-dom'
+import Sidebar from '@components/Layout/Sidebar'
+import Routes from './Routes.js'
 
-
-function AuthauthApp(){
-    return(
-        <Switch>
-            <Route exact path= "/dashboard" component={() => <h1>Este es el Dashboard</h1>}/>
-            <Redirect to="/dashboard"/>
-        </Switch>
+export default function AuthApp(){
+    const setRoutes = () => (
+        Routes.map(({path, Component}) => <Route key={path} exact path={path} component={Component}/>)
     )
-};
 
-export default AuthauthApp;
+    return(
+        <>
+        <Sidebar/>
+        <Switch>
+            {setRoutes()}
+            <Redirect to="/dashboard/404" />
+        </Switch>
+        </>
+    )
+}
