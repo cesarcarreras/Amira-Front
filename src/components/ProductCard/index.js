@@ -1,5 +1,5 @@
 
-import React from 'react'
+import React, {useRef} from 'react'
 
 import {
     Heading,
@@ -24,15 +24,17 @@ import {
     Flex
   } from '@chakra-ui/react';
 
-  import soapImg from '@assets/images/product-soap.png';
-
 
   export default function ProductCard(props) {
 
+    const product = props;
+
+    const {onAdd} = props;
+
     const { isOpen, onOpen, onClose } = useDisclosure()
 
-    const initialRef = React.useRef()
-    const finalRef = React.useRef()
+    const {initialRef, finalRef} = useRef()
+
 
     return (
       <Center py={6}>
@@ -46,23 +48,23 @@ import {
           textAlign={'center'}>
           <Avatar
             size={'xl'}
-            src={soapImg}
+            src={product.img}
             alt={'Avatar Alt'}
             mb={4}
             pos={'relative'}
           />
           <Heading fontSize={'2xl'} fontFamily={'body'}>
-            {props.title}
+            {product.title}
             <Badge ml="1" colorScheme="green">
         New
       </Badge>
           </Heading>
-
           <Text
+            mt={3}
             textAlign={'center'}
             color={useColorModeValue('gray.700', 'gray.400')}
             px={1}>
-              {props.description}
+              €{product.price} EUR
           </Text>
 
           <Stack mt={8} direction={'row'} spacing={4}>
@@ -85,15 +87,13 @@ import {
       >
         <ModalOverlay />
         <ModalContent>
-          <ModalHeader>Jabón de Algo</ModalHeader>
+          <ModalHeader>{product.title}</ModalHeader>
           <ModalCloseButton />
           <ModalBody pb={6}>
           <Flex justifyContent="center" alignContent="center" alignItems="center">
-          <Image src={soapImg} alt="Soap image" borderRadius="full" boxSize="150px" />
+          <Image src={product.img} alt="Soap image" borderRadius="full" boxSize="150px" />
           <Container>
-            There are many benefits to a joint design and development system. Not only
-            does it bring benefits to the design team, but it also brings benefits to
-            engineering teams.
+          {product.description}
         </Container>
         </Flex>
           </ModalBody>
@@ -108,6 +108,7 @@ import {
       </Modal>
 
             <Button
+              onClick={() => onAdd(product)}
               flex={1}
               fontSize={'sm'}
               rounded={'full'}

@@ -1,8 +1,8 @@
 import React, {useEffect, useState} from 'react'
-import {Banner, NavBar, Featured, ProductCard, Footer, Newsletter} from '@components'
+import {Banner, Navbar, Featured, ProductCard, Footer, Newsletter} from '@components'
 import { Flex } from '@chakra-ui/react'
 import { allProductsEP } from '@services/product-ws'
-
+import bgPicture from '@assets/images/tropical-green-leaves-background-min.jpg'
 
 const Home = () => {
 
@@ -19,16 +19,20 @@ const Home = () => {
 
     return(
         <>
-            <NavBar/>
-            <Banner/>
+            <Navbar/>
+            <Banner
+                bgImage={bgPicture}
+            />
             <Featured/>
             <Flex p={6} m="10px" wrap="wrap" justifyContent="space-around" alignItems="center" alignContent="center">
-            { filteredProducts.map(product => {
-                return <ProductCard
+            { filteredProducts.map(product => (
+                <ProductCard
+                    key={product.id}
                     title={product.title}
                     description={product.description}
+                    img={product.img}
                 />
-              })}
+            ))}
             </Flex>
             <Newsletter/>
             <Footer/>

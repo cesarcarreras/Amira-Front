@@ -1,7 +1,7 @@
 import React from 'react'
 import { NotFound } from '@components'
 import PageSection from '../components/Layout/PageSection'
-import { Home, Products, Profile, Checkout } from './views'
+import { Home, Products, Profile, Checkout, Clients, Orders } from './views'
 
 
 export default [
@@ -21,7 +21,13 @@ export default [
         path: '/dashboard/clients',
         label: 'Clients',
         type: 'menu',
-        Component: () =>( <PageSection> <Profile/> </PageSection> )
+        Component: () =>( <PageSection> <Clients/> </PageSection> )
+    },
+    {
+        path: '/dashboard/checkout',
+        label: 'Orders',
+        type: 'menu',
+        Component: () =>( <PageSection> <Orders/> </PageSection>)
     },
     {
         path: '/dashboard/profile',

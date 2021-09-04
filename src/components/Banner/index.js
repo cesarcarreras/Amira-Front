@@ -7,55 +7,30 @@ import {
   Stack,
 } from '@chakra-ui/react';
 
-import bgPicture from '../../assets/images/tropical-green-leaves-background-min.jpg'
-
-export default function Banner() {
+export default function Banner(props) {
   return (
     <>
-      <Box w="100%" bgImage={bgPicture} bgPosition="center" bgSize="cover">
-        <Stack
-          as={Box}
-          textAlign={'center'}
-          alignItems="center"
-          spacing={{ base: 8, md: 14 }}
-          py={{ base: 20, md: 36 }}>
-          <Heading
-            color="coral.500"
-            fontWeight={600}
-            fontSize={{ base: '2xl', sm: '4xl', md: '6xl' }}
-            lineHeight={'110%'}>
-            Los mejores Jabones <br />
-            <Text as={'span'} color={'green.400'}>
-              Ecológicos
+
+      <Box as="section" bgImage={props.bgImage} bgPosition="center" bgSize="cover">
+          <Box
+            maxW="2xl"
+            mx="auto"
+            px={{ base: '6', lg: '8' }}
+            py={{ base: '16', sm: '20' }}
+            textAlign="center"
+          >
+            <Heading as="h2" size="3xl" fontWeight="extrabold" letterSpacing="tight">
+              Los mejores Jabones Ecológicos
+            </Heading>
+            <Text mt="4" fontSize="lg" color="white">
+              Ac euismod vel sit maecenas id pellentesque eu sed consectetur. Malesuada adipiscing
+              sagittis vel nulla nec.
             </Text>
-          </Heading>
-          <Text color="coral.500" w="50%">
-            Monetize your content by charging your most loyal readers and reward
-            them loyalty points. Give back to your loyal readers by granting
-            them access to your pre-releases and sneak-peaks.
-          </Text>
-          <Stack
-            direction={'column'}
-            spacing={3}
-            align={'center'}
-            alignSelf={'center'}
-            position={'relative'}>
-            <Button
-              colorScheme={'green'}
-              bg={'green.400'}
-              rounded={'full'}
-              px={6}
-              _hover={{
-                bg: 'green.500',
-              }}>
-              Get Started
+            <Button mt="8" as="a" href="/products" size="lg" colorScheme="blue" fontWeight="bold" rounded={'full'}>
+              Ver productos
             </Button>
-            <Button variant={'link'} colorScheme={'blue'} size={'sm'}>
-              Ver nuestros productos
-            </Button>
-          </Stack>
-        </Stack>
-      </Box>
+          </Box>
+        </Box>
     </>
   );
 }
