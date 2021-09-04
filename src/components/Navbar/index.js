@@ -4,7 +4,6 @@ import {
   Flex,
   Spacer,
   Image,
-  Button,
   Stack
 } from '@chakra-ui/react';
 
@@ -31,10 +30,6 @@ export default function Navbar(props) {
     </Box>
 </Stack>
     <Spacer />
-    <Box>
-        <Button as="a" href="/signup" colorScheme="teal" mr="4">Sign Up</Button>
-        <Button as="a" href="/login" colorScheme="teal">Log in</Button>
-    </Box>
     </Flex>
   );
 }

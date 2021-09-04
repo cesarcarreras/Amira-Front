@@ -10,6 +10,7 @@ export default function Signup(props){
     const toast = useToast()
 
     const name = useInput('')
+    const lastName = useInput('')
     const email = useInput('')
     const password = useInput('')
     const birthday = useInput('')
@@ -24,6 +25,7 @@ export default function Signup(props){
         setLoading(true)
         const data = {
             name: name.value,
+            lastName: lastName.value,
             email: email.value,
             password: password.value,
             birthday: birthday.value,
@@ -65,6 +67,13 @@ export default function Signup(props){
             icon: 'user',
             labelName: 'Nombre',
             control: {...name}
+        },
+        {
+            placeholder : 'Bond',
+            type: 'text',
+            icon: 'user',
+            labelName: 'Apellido',
+            control: {...lastName}
         },
         {
             placeholder : 'James@bond.com',
