@@ -1,11 +1,13 @@
+import { Button, Flex, Heading } from '@chakra-ui/react'
 import React from 'react'
 
 const NotFound = () => {
 
     return(
-        <div>
-            <h1>NOT FOUND</h1>
-        </div>
+            <Flex justify="center" alignItems="center" alignContent="center" direction="column" w="100vw" h="100vh">
+                <Heading >La página que estás buscando no se encuentra</Heading>
+                <Button as="a" href="/dashboard/home" >Ir al Home</Button>
+            </Flex>
     )
 }
 

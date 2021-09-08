@@ -4,6 +4,7 @@ import Products from './views/Products';
 import Home from './views/Home';
 import Login from './views/Login';
 import Signup from './views/Signup';
+import { NotFound } from '@components';
 
 function UnauthApp(){
     return(
@@ -11,8 +12,9 @@ function UnauthApp(){
             <Route exact path= "/login" component={Login}/>
             <Route exact path= "/signup" component={Signup}/>
             <Route exact path= "/Products" component={Products}/>
+            <Route exact path= "/404" component={NotFound}/>
             <Route exact path= "/" component={Home}/>
-            <Redirect to="/login"/>
+            <Redirect to="/404"/>
         </Switch>
     )
 };
