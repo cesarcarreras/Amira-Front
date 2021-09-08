@@ -4,7 +4,6 @@ import {
   Heading,
   Text,
   Button,
-  Stack,
 } from '@chakra-ui/react';
 
 export default function Banner(props) {

@@ -4,21 +4,27 @@ import { NavLink } from 'react-router-dom';
 import { HamburgerIcon} from '@chakra-ui/icons'
 import {useAuth} from '@utils/AuthContext'
 import Routes from '../../AuthApp/Routes'
+import { PhoneIcon, AtSignIcon, SunIcon, UpDownIcon, WarningIcon } from '@chakra-ui/icons'
 
 
 
 export default function Sidebar(){
     const [navSize, changeNavSize] = useState('large')
-
-    const [, dispatch] = useAuth()
     const [{user}] = useAuth()
 
     const setLinks = () =>{
         return Routes.map(function({label, path, type}){
-            if(type==='menu')
+            if(type === 'menu')
             return <Box key={path} fontSize={['sm', 'md', 'lg', 'xl']} mt={[3,3,5,5]} mb={[3,3,5,5]}>
                         <NavLink activeStyle={{fontWeight: 'bold'}} style={{color:'black'}} exact to={path}>
-                            {label}
+                            {
+                            navSize === 'small' && label === 'Dashboard' ? <PhoneIcon/> :
+                            navSize === 'small' && label === 'Products' ? <AtSignIcon/> :
+                            navSize === 'small' && label === 'Clients' ? <SunIcon/> :
+                            navSize === 'small' && label === 'Orders' ? <UpDownIcon/> :
+                            navSize === 'small' && label === 'Profile' ? <WarningIcon/> :
+                            label
+                            }
                         </NavLink>
                     </Box>
         })

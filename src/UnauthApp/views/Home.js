@@ -15,7 +15,6 @@ const Home = () => {
     }, [])
 
     const filteredProducts = products.filter((products) => products.featured === true)
-    console.log(filteredProducts)
 
     return(
         <>

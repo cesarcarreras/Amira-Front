@@ -27,9 +27,7 @@ import {
 
   export default function ProductCard(props) {
 
-    const product = props;
-
-    const {onAdd} = props;
+    const {onAdd, product} = props;
 
     const { isOpen, onOpen, onClose } = useDisclosure()
 
@@ -48,13 +46,13 @@ import {
           textAlign={'center'}>
           <Avatar
             size={'xl'}
-            src={product.img}
+            src={product?.img[0]}
             alt={'Avatar Alt'}
             mb={4}
             pos={'relative'}
           />
           <Heading fontSize={'2xl'} fontFamily={'body'}>
-            {product.title}
+            {product?.title}
             <Badge ml="1" colorScheme="green">
         New
       </Badge>
@@ -64,7 +62,7 @@ import {
             textAlign={'center'}
             color={useColorModeValue('gray.700', 'gray.400')}
             px={1}>
-              €{product.price} EUR
+              €{product?.price} EUR
           </Text>
 
           <Stack mt={8} direction={'row'} spacing={4}>
@@ -87,13 +85,13 @@ import {
       >
         <ModalOverlay />
         <ModalContent>
-          <ModalHeader>{product.title}</ModalHeader>
+          <ModalHeader>{product?.title}</ModalHeader>
           <ModalCloseButton />
           <ModalBody pb={6}>
           <Flex justifyContent="center" alignContent="center" alignItems="center">
-          <Image src={product.img} alt="Soap image" borderRadius="full" boxSize="150px" />
+          <Image src={product?.img} alt="Soap image" borderRadius="full" boxSize="150px" />
           <Container>
-          {product.description}
+          {product?.description}
         </Container>
         </Flex>
           </ModalBody>
