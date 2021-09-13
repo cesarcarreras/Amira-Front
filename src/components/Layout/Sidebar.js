@@ -1,10 +1,9 @@
 import React, {useState} from 'react';
 import { Avatar, IconButton, Divider, Flex, Heading, Text, Box } from '@chakra-ui/react';
 import { NavLink } from 'react-router-dom';
-import { HamburgerIcon} from '@chakra-ui/icons'
 import {useAuth} from '@utils/AuthContext'
 import Routes from '../../AuthApp/Routes'
-import { PhoneIcon, AtSignIcon, SunIcon, UpDownIcon, WarningIcon } from '@chakra-ui/icons'
+import { HamburgerIcon, PhoneIcon, AtSignIcon, SunIcon, UpDownIcon, WarningIcon } from '@chakra-ui/icons'
 
 
 

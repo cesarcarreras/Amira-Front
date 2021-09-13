@@ -11,3 +11,4 @@ export {default as Sidebar} from './Layout/Sidebar';
 export {default as PageSection} from './Layout/PageSection';
 export {default as Paypal} from './Paypal';
 export {default as ShopCart} from './ShopCart'
+export {default as SignupForm} from './SignupForm'

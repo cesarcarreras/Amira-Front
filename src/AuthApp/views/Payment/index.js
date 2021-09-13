@@ -3,7 +3,7 @@ import React, {useState} from 'react';
 import { Paypal } from '@components';
 
 
-const Checkout = () => {
+const Payment = () => {
 
     const [checkout, setCheckout] = useState(false)
 
@@ -20,4 +20,4 @@ const Checkout = () => {
     )
 };
 
-export default Checkout;
+export default Payment;

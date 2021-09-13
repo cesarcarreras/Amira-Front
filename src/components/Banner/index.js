@@ -9,7 +9,6 @@ import {
 export default function Banner(props) {
   return (
     <>
-
       <Box as="section" bgImage={props.bgImage} bgPosition="center" bgSize="cover">
           <Box
             maxW="2xl"
