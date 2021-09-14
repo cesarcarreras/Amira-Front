@@ -3,13 +3,16 @@ import { Avatar, IconButton, Divider, Flex, Heading, Text, Box } from '@chakra-u
 import { NavLink } from 'react-router-dom';
 import {useAuth} from '@utils/AuthContext'
 import Routes from '../../AuthApp/Routes'
-import { HamburgerIcon, PhoneIcon, AtSignIcon, SunIcon, UpDownIcon, WarningIcon } from '@chakra-ui/icons'
+
+import { HamburgerIcon, PhoneIcon, AtSignIcon, SunIcon, UpDownIcon, WarningIcon, CloseIcon } from '@chakra-ui/icons'
+import Logout from '../Logout';
 
 
-
-export default function Sidebar(){
+export default function Sidebar(props){
     const [navSize, changeNavSize] = useState('large')
     const [{user}] = useAuth()
+
+    const {isOpen} = props
 
     const setLinks = () =>{
         return Routes.map(function({label, path, type}){
@@ -22,6 +25,7 @@ export default function Sidebar(){
                             navSize === 'small' && label === 'Clients' ? <SunIcon/> :
                             navSize === 'small' && label === 'Orders' ? <UpDownIcon/> :
                             navSize === 'small' && label === 'Profile' ? <WarningIcon/> :
+                            navSize === 'small' && label === 'Logout' ? <CloseIcon/> :
                             label
                             }
                         </NavLink>
@@ -58,6 +62,10 @@ export default function Sidebar(){
                     {setLinks()}
 
               </Flex>
+
+              <Text>Logout</Text>
+              <Logout onClick={() => isOpen(true)}>
+              </Logout>
 
               <Flex p="5%"
                     direction="column"

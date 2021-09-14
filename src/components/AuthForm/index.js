@@ -37,7 +37,7 @@ function AuthForm(props){
                     </Box>
                 ))}
                 <Button
-                    mt={10}
+                    mt={-10}
                     onClick={actionButton}
                     isLoading={loading}
                     width="30%"

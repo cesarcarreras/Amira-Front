@@ -77,6 +77,12 @@ export default function Products() {
     const removeAll = () => {
         localStorage.removeItem("cartItems")
         setCartItems([])
+        toast({
+            position: 'top-right',
+            title: "Carrito se vació correctamente",
+            status: 'success',
+            duration: 2000,
+        })
     }
 
 

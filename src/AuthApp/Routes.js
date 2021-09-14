@@ -1,7 +1,7 @@
 import React from 'react'
-import { NotFound } from '@components'
+import { NotFound, Logout } from '@components'
 import PageSection from '@components/Layout/PageSection'
-import { Home, Products, Profile, Payment, Clients, Orders } from './views'
+import { Home, Products, Profile, Clients, Orders } from './views'
 
 
 export default [
@@ -36,10 +36,10 @@ export default [
         Component: () =>( <PageSection> <Profile/> </PageSection> )
     },
     {
-      path: '/dashboard/payment',
-      label: 'payment',
-      type: 'none',
-      Component: () =>( <PageSection> <Payment/> </PageSection>)
+        path: '/dashboard/logout',
+        label: 'Logout',
+        type: 'menu',
+        Component: () =>(<Logout/>)
     },
     {
       path: '/dashboard/404',
