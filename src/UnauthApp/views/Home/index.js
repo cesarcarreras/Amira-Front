@@ -1,8 +1,6 @@
-import React, {useEffect, useState} from 'react'
+import React from 'react'
 import {Banner, Navbar, Featured, ProductCard, Footer, Newsletter} from '@components'
-import { Flex } from '@chakra-ui/react'
-import { allProductsEP } from '@services/product-ws'
-import bgPicture from '@assets/images/banner.png'
+import bgPicture from '@assets/images/banner2.png'
 
 const Home = () => {
 

@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from 'react'
 import {allProductsEP} from '@services/product-ws'
-import { Banner, Footer, Navbar, Newsletter, ProductCard, ShopCart } from '@components'
+import { Banner, Footer, Navbar, Newsletter, ProductBanner, ProductCard, ShopCart } from '@components'
 import { Badge, Box, Flex, useToast } from '@chakra-ui/react'
 import bgPicture from '@assets/images/background-products.jpg'
 
@@ -97,7 +97,7 @@ export default function Products() {
             ) : ('')}
             </Box>
         </Flex>
-            <Banner bgImage={bgPicture} />
+            <ProductBanner bgImage={bgPicture} />
 
             <Flex p={6} m="10px" wrap="wrap" justifyContent="space-around" alignItems="center" alignContent="center">
             { products.map(product => {
