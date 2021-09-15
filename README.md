@@ -2,7 +2,7 @@
 <br />
 <p align="center">
   <a href="https://github.com/cesarcarreras/">
-    <img src="./public/images/logo.png" alt="Logo" width="560" height="230">
+    <img src="./src/assets/images/logo.png" alt="Logo" width="560" height="230">
   </a>
 
   <h1 align="center">Amira Soap - Frontend</h1>
@@ -36,7 +36,7 @@
 <!-- ABOUT THE PROJECT -->
 ## Acerca del Proyecto
 
-  <img src="./public/images/logo.png" alt="Logo" width="560" height="230" alt="Demo Screenshot">
+  <img src="./src/assets/images/logo.png" alt="Logo" width="560" height="230" alt="Demo Screenshot">
 
 Para este último proyecto de IronHack, he decido aportar las nuevas habilidades adquiridas a través de IronHack para pequeños negocios y específicamente el de mi madre para poder digitalizar su más reciente proyecto. 
 
