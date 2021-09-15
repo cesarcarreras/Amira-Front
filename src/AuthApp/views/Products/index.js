@@ -18,13 +18,13 @@ function Products(){
        <>
                <h1>Aquí van todos los productos</h1>
         <Flex wrap="wrap" justify="space-between" alignContent="space-between">
-            { products.map(product => {
-                return <ProductCard
-                    key={product.id}
+            { products.map(product => (
+                    <ProductCard
+                    key={product._id}
                     title={product.title}
                     description={product.description}
                 />
-            })}
+            ))}
         </Flex>
         </>
     )

@@ -23,16 +23,17 @@ import {
     Container,
     Flex
   } from '@chakra-ui/react';
+import { useHistory } from 'react-router-dom';
 
 
-  export default function ProductCard(props) {
+  export default function ProductsCard(props) {
 
-    const {onAdd, product} = props;
-
+    const history = useHistory()
+    console.log(props)
     const { isOpen, onOpen, onClose } = useDisclosure()
 
-    const {initialRef, finalRef} = useRef()
 
+    const {initialRef, finalRef} = useRef()
 
     return (
       <Center py={6}>
@@ -46,13 +47,13 @@ import {
           textAlign={'center'}>
           <Avatar
             size={'xl'}
-            src={product?.img[0]}
+            src={props?.img}
             alt={'Avatar Alt'}
             mb={4}
             pos={'relative'}
           />
           <Heading fontSize={'2xl'} fontFamily={'body'}>
-            {product?.title}
+            {props?.title}
             <Badge ml="1" colorScheme="green">
         New
       </Badge>
@@ -62,7 +63,7 @@ import {
             textAlign={'center'}
             color={useColorModeValue('gray.700', 'gray.400')}
             px={1}>
-              €{product?.price} EUR
+              €{props?.price} EUR
           </Text>
 
           <Stack mt={8} direction={'row'} spacing={4}>
@@ -85,13 +86,13 @@ import {
       >
         <ModalOverlay />
         <ModalContent>
-          <ModalHeader>{product?.title}</ModalHeader>
+          <ModalHeader>{props?.title}</ModalHeader>
           <ModalCloseButton />
           <ModalBody pb={6}>
           <Flex justifyContent="center" alignContent="center" alignItems="center">
-          <Image src={product?.img} alt="Soap image" borderRadius="full" boxSize="150px" />
+          <Image src={props?.img} alt="Soap image" borderRadius="full" boxSize="150px" />
           <Container>
-          {product?.description}
+          {props?.description}
         </Container>
         </Flex>
           </ModalBody>
@@ -106,7 +107,7 @@ import {
       </Modal>
 
             <Button
-              onClick={() => onAdd(product)}
+              onClick={() => history.push('/products')}
               flex={1}
               fontSize={'sm'}
               rounded={'full'}

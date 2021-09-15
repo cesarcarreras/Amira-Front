@@ -1,9 +1,6 @@
 import React, {useEffect, useState, useRef} from 'react'
 import { deleteOrderEP, allOrdersEP } from '@services/order-ws';
-import { allUsersEP } from '@services/user-ws';
-import { allProductsEP } from '@services/product-ws';
-import { Input, Drawer, DrawerContent, DrawerCloseButton, DrawerHeader, DrawerBody, Box, InputGroup, DrawerFooter, Flex, Spacer, useDisclosure, useToast, Table, Thead, Tbody, Tr, Th, Td, Heading, Button, Badge, Tooltip, AlertDialog, AlertDialogOverlay, AlertDialogContent, AlertDialogHeader, AlertDialogBody, AlertDialogFooter } from '@chakra-ui/react';
-import useInput from '@hooks/useInput.js';
+import { useDisclosure, useToast, Table, Thead, Tbody, Tr, Th, Td, Heading, Button, Badge, Tooltip, AlertDialog, AlertDialogOverlay, AlertDialogContent, AlertDialogHeader, AlertDialogBody, AlertDialogFooter } from '@chakra-ui/react';
 
 export default function Orders() {
         const [orders, setOrders] = useState([])
@@ -23,6 +20,7 @@ export default function Orders() {
             .catch(err => console.log(err))
         }, [])
 
+        console.log(orders)
         const handleDelete = (id) => {
             setLoading(true)
             try {
@@ -60,7 +58,7 @@ export default function Orders() {
                 <Th>Pedido</Th>
                 <Th>Estado</Th>
                 <Th>Cliente</Th>
-                <Th>Producto</Th>
+                <Th>Productos</Th>
                 <Th>Total</Th>
                 <Th>Editar</Th>
                 <Th>Borrar</Th>
@@ -68,7 +66,7 @@ export default function Orders() {
             </Thead>
             <Tbody>
             {orders.map(order => (
-                <Tr key={order.id}>
+                <Tr key={order._id}>
                 <Td>#{order.orderNumber}</Td>
                 <Td>
                 {
@@ -81,11 +79,9 @@ export default function Orders() {
                  }
                 </Td>
                 <Td >
-                <Tooltip label="New client" placement="top">
-                     "Nombre del cliente"
-                </Tooltip>
+                    {order.status}
                 </Td>
-                <Td >{order._product.title}</Td>
+                <Td >{order._products.length}</Td>
                 <Td >${order.total}</Td>
                 <Td ><Button colorScheme="teal" size="xs">Editar</Button></Td>
                 <Td >

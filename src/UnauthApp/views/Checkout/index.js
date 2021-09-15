@@ -8,18 +8,17 @@ import { Avatar, Box, Flex, Spacer, Text, useToast, AlertDialog,
    AlertDialogOverlay,
    Heading,} from '@chakra-ui/react'
 import { useHistory } from 'react-router-dom';
-import { signupEP } from '@services/auth-ws.js';
 import { SignupForm, Paypal } from '@components';
 import handleAsync from '@utils/handleAsync.js';
 import useInput from '@hooks/useInput.js';
-import { deleteUserEP } from '@services/user-ws';
+import { deleteUserEP, createUserEP } from '@services/user-ws';
 import { createOrderEP } from '@services/order-ws';
 
 export default function Checkout(){
 
    const [cartItems, setCartItems] = useState(JSON.parse(localStorage.getItem("cartItems")) || [])
    const [user, setUser] = useState(JSON.parse(localStorage.getItem("userLocal")))
-   const [order, setOrder] = useState(JSON.parse(localStorage.getItem("orderLocal")))
+   const [order, setOrder] = useState(JSON.parse(localStorage.getItem("orderLocal")) || [])
 
    const itemsPrice = cartItems.reduce((acc, current) => acc + current.price * current.qty, 0);
    const taxPrice = itemsPrice * 0.21;
@@ -35,17 +34,15 @@ export default function Checkout(){
    const name = useInput('')
    const lastName = useInput('')
    const email = useInput('')
-   const password = useInput('')
    const birthday = useInput('')
    const address = useInput('')
    const phone = useInput('')
-   const role = useInput('USER')
 
    const history = useHistory()
 
    const [loading, setLoading] = useState(false)
 
-   const handleSignup = async e => {
+   const handleCreateUser = async e => {
       setIsOpen(true) //<--- QUITAR ESTO DESPUES DE PRUEBAS
       e.preventDefault()
       setLoading(true)
@@ -53,14 +50,12 @@ export default function Checkout(){
           name: name.value,
           lastName: lastName.value,
           email: email.value,
-          password: password.value,
           birthday: birthday.value,
           address: address.value,
           phone: phone.value,
-          role: role.value
       }
 
-      const user = await handleAsync(() => signupEP(data))
+      const user = await handleAsync(() => createUserEP(data))
 
       const Orderdata = {
          total: totalPrice.toFixed(2),
@@ -71,7 +66,9 @@ export default function Checkout(){
       const order = await handleAsync(() => createOrderEP(Orderdata))
 
       setOrder(order)
-      if(order) localStorage.setItem("orderLocal", JSON.stringify(order))
+      if(order){
+         localStorage.setItem("orderLocal", JSON.stringify(order))
+      }
 
       console.log(order)
 
@@ -100,6 +97,8 @@ export default function Checkout(){
           })
           setLoading(false)
       }
+
+      console.log(user)
   };
 
   const handleDelete = (id) => {
@@ -134,16 +133,10 @@ export default function Checkout(){
          control: {...address}
      },
       {
-          placeholder : 'Telefono',
+          placeholder : 'Teléfono',
           type: 'number',
           labelName: 'Número de teléfono',
           control: {...phone}
-      },
-      {
-          placeholder : '* * * * * * * * ',
-          type: 'password',
-          labelName: 'Contraseña',
-          control: {...password}
       },
       {
           placeholder : 'Fecha de Nacimiento',
@@ -215,7 +208,7 @@ export default function Checkout(){
          </Flex>
          </>
        :
-         <SignupForm  inputs={inputs} actionButton={handleSignup} loading={loading}/>
+         <SignupForm  inputs={inputs} actionButton={handleCreateUser} loading={loading}/>
        }
          </Box>
 

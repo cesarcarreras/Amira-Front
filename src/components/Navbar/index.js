@@ -1,35 +1,39 @@
 import React from 'react';
 import {
-  Box,
   Flex,
-  Spacer,
   Image,
-  Stack
+  Menu,
+  MenuButton,
+  MenuList,
+  MenuItem,
+  Button,
 } from '@chakra-ui/react';
 
+import { HamburgerIcon } from '@chakra-ui/icons'
 
-import Logo from '@assets/images/logo.jpg'
+import Logo from '@assets/images/logo.png'
 
 
 export default function Navbar(props) {
 
+
   return (
-    <Flex p={4}>
-    <Box>
-    <Image src={Logo} alt="Logo img" boxSize="150px"  borderRadius="full"/>
-    </Box>
-    <Stack direction={["column", "row"]} spacing="24px" ml={20}>
-    <Box w="100px" h="40px" bg="yellow.200">
-       LINK 1
-    </Box>
-    <Box w="100px" h="40px" bg="tomato">
-       LINK 2
-    </Box>
-    <Box w="100px" h="40px" bg="pink.100">
-       LINK 3
-    </Box>
-</Stack>
-    <Spacer />
+    <Flex justify="space-around" alignContent="center" alignItems="center">
+
+      <Menu >
+        <MenuButton colorScheme="blue" as={Button} size="lg" rightIcon={<HamburgerIcon />}>
+          Menu
+        </MenuButton>
+        <MenuList borderColor="#94BABA" w="xs" h="xs">
+          <MenuItem m={2}>Inicio</MenuItem>
+          <MenuItem m={2}>Productos</MenuItem>
+          <MenuItem m={2}>Quienes somos</MenuItem>
+        </MenuList>
+      </Menu>
+
+    <Image src={Logo} alt="Logo img" w="650px" h="250"/>
+
+    <Button>Ver mi pedido</Button>
     </Flex>
   );
 }
