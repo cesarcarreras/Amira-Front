@@ -3,13 +3,20 @@
   "version": "0.0.0",
   "private": true,
   "dependencies": {
+    "@chakra-ui/icons": "^1.0.15",
+    "@chakra-ui/react": "^1.6.6",
+    "@emotion/react": "^11",
+    "@emotion/styled": "^11",
     "axios": "^0.19.0",
+    "framer-motion": "^4",
     "link-module-alias": "^1.2.0",
     "module-alias": "^2.2.2",
     "react": "^16.10.0",
     "react-dom": "^16.10.0",
     "react-router-dom": "^5.1.1",
-    "react-scripts": "3.1.2"
+    "react-scripts": "3.1.2",
+    "react-table": "^7.7.0",
+    "sweetalert2": "^11.1.4"
   },
   "scripts": {
     "start": "react-scripts start",
@@ -34,8 +41,10 @@
     ]
   },
   "_moduleAliases": {
-    "@components": "./src/app/components",
-    "@views": "./src/app/views",
-    "@services": "./src/app/services"
+    "@components": "./src/components",
+    "@services": "./src/services",
+    "@hooks" : "./src/hooks",
+    "@utils" : "./src/utils",
+    "@assets" : "./src/assets"
   }
 }
