@@ -1,14 +1,21 @@
-import { Popover, Button, Portal, PopoverTrigger, PopoverContent, PopoverArrow, PopoverHeader, PopoverCloseButton, PopoverBody, PopoverFooter, Text } from '@chakra-ui/react'
 import React from 'react'
+import { Avatar, Popover, Button, Portal, PopoverTrigger, PopoverContent, PopoverCloseButton, PopoverBody, PopoverFooter, Text, Box, Flex, Heading, Image } from '@chakra-ui/react'
+import { useHistory } from 'react-router-dom'
+import emptyCart from '@assets/images/empty.png'
 
 export default function ShopCart(props) {
 
-    const {cartItems, onAdd, onRemove} = props
+    const {onAdd, onRemove, removeAll} = props
 
-    const itemsPrice = cartItems.reduce((acc, current) => acc + current.price * current.qty, 0);
-    const taxPrice = itemsPrice * 0.21;
-    const shippingPrice = itemsPrice > 50 ? 0 : 5.99;
-    const totalPrice = itemsPrice + taxPrice + shippingPrice;
+    const history = useHistory()
+
+    // const [cartItems, setItems] = useState( props.cartItems || JSON.parse(localStorage.getItem("cartItems")))
+
+     const goToCheckout = () => history.push('/checkout')
+
+    //  useEffect(() => {
+    //     setItems(props.cartItems)
+    //  }, [props.cartItems.length])
 
     return (
         <Popover>
@@ -16,46 +23,39 @@ export default function ShopCart(props) {
             <Button>Ver Carrito</Button>
         </PopoverTrigger>
         <Portal>
-            <PopoverContent>
-            <PopoverArrow />
-            <PopoverHeader>{cartItems.length === 0 && <Text>El carrito está vacío</Text>}</PopoverHeader>
+            <PopoverContent w="450px">
             <PopoverCloseButton />
             <PopoverBody>
-              {cartItems.map((item) => (
-                <div key={item.id}>
-                    <div>{item.name}</div>
-                    <div>
-                        <Button onClick={() => onAdd(item)}>+</Button>
-                        <Button onClick={() => onRemove(item)}>-</Button>
-                    </div>
 
-                    <div>
+             {props.cartItems !== undefined && props.cartItems.length ? props.cartItems.map((item) => (
+                <Box key={item._id} borderColor="blue" borderWidth="1px" p={1} >
+                <Flex>
+                    <Avatar src={item.img[0]} w="100px" size="lg" />
+                 <Flex direction="column">
+                    <Heading>{item.title}</Heading>
+                 <Flex direction="row">
+                   <Button onClick={() => onAdd(item)}>+</Button>
+                    <Button onClick={() => onRemove(item)}>-</Button>
+                </Flex>
+                 </Flex>
+                        {item.qty} X €{item.price.toFixed(2)}
+                </Flex>
+                </Box>
+            )) :
+            <Flex direction="column" alignItems="center">
+                <Image src={emptyCart} w="100px" p={5}/>
+                <Text>Añade productos para verlos en tu carrito</Text>
+            </Flex>
+            }
 
-                        {item.qty} X ${item.price.toFixed(2)}
-                    </div>
-                </div>
-            ))}
-            {cartItems.length !== 0 &&(
-                <>
-                    <hr></hr>
-                    <div>Productos</div>
-                    <div>€{itemsPrice.toFixed(2)}</div>
-
-                    <div>IVA</div>
-                    <div>€{taxPrice.toFixed(2)}</div>
-
-                    <div>Envío</div>
-                    <div>€{shippingPrice.toFixed(2)}</div>
-
-                    <div>Total</div>
-                    <div>€{totalPrice.toFixed(2)}</div>
-                </>
-            )}
             </PopoverBody>
+            { props.cartItems !== undefined && props.cartItems.length ?
             <PopoverFooter>
-            <Button colorScheme="blue">Pagar</Button>
-            <Button colorScheme="red" >Vaciar Carrito</Button>
+            <Button colorScheme="red" onClick={removeAll}>Vaciar Carrito</Button>
+            <Button colorScheme="blue" onClick={goToCheckout}>Pagar</Button>
             </PopoverFooter>
+            :<div></div>
+            }
             </PopoverContent>
         </Portal>
         </Popover>

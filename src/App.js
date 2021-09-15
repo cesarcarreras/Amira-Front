@@ -1,5 +1,5 @@
 import React, {Suspense, lazy} from 'react';
-import { useAuth } from './utils/AuthContext';
+import { useAuth } from '@utils/AuthContext';
 import { Loader } from '@components';
 
 export const App = () => {

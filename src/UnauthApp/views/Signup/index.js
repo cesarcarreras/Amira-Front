@@ -12,9 +12,10 @@ export default function Signup(props){
     const name = useInput('')
     const lastName = useInput('')
     const email = useInput('')
+    const address = useInput('')
     const password = useInput('')
     const birthday = useInput('')
-    const role = useInput('ADMIN')
+    const role = useInput('USER')
 
     const history = useHistory()
 
@@ -29,6 +30,7 @@ export default function Signup(props){
             email: email.value,
             password: password.value,
             birthday: birthday.value,
+            address: address.value,
             role: role.value
         }
 

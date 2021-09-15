@@ -1,7 +1,7 @@
 import React, {useEffect, useState, useRef} from 'react'
 import { allUsersEP, deleteUserEP } from '@services/user-ws';
 import useInput from '@hooks/useInput.js';
-import { PopoverFooter, ButtonGroup, PopoverCloseButton, PopoverArrow, PopoverBody, PopoverContent, IconButton, Popover, PopoverTrigger, Box, InputGroup, Drawer, DrawerHeader, Input, DrawerFooter, DrawerBody, DrawerOverlay, DrawerContent, DrawerCloseButton, Table, Thead, Tbody, Tr, Th, Td, Heading, Button, Flex, Spacer, useDisclosure, useToast, AlertDialog, AlertDialogOverlay, AlertDialogContent, AlertDialogHeader, AlertDialogBody, AlertDialogFooter } from '@chakra-ui/react';
+import { PopoverFooter, PopoverCloseButton, PopoverArrow, PopoverBody, PopoverContent, IconButton, Popover, PopoverTrigger, Box, InputGroup, Drawer, DrawerHeader, Input, DrawerFooter, DrawerBody, DrawerOverlay, DrawerContent, DrawerCloseButton, Table, Thead, Tbody, Tr, Th, Td, Heading, Button, Flex, Spacer, useDisclosure, useToast, AlertDialog, AlertDialogOverlay, AlertDialogContent, AlertDialogHeader, AlertDialogBody, AlertDialogFooter } from '@chakra-ui/react';
 import { createUserEP } from '@services/user-ws.js';
 import { EditIcon } from '@chakra-ui/icons'
 
@@ -77,15 +77,6 @@ export default function Clients() {
         }
     }
 
-    const handleUpdate = (e) => {
-        e.preventDefault()
-        const data = {
-            name: name.value,
-            lastName: lastName.value,
-            email: email.value,
-        }
-    }
-
     const handleNewUser = async e => {
         e.preventDefault()
         setLoading(true)
@@ -96,18 +87,20 @@ export default function Clients() {
         }
 
         const {data} = await createUserEP(dataUser)
-        if(data.user !== undefined){
-            toast({
-                position: 'top-right',
-                title: "Cuenta creada correctamente",
-                status: 'success',
-                duration: 3000,
-            })
 
-                setLoading(false)
-                onClose()
-                setClients([...clients, data.user])
-        }else{
+        try {
+            if(data.user !== undefined){
+                toast({
+                    position: 'top-right',
+                    title: "Cuenta creada correctamente",
+                    status: 'success',
+                    duration: 3000,
+                })
+                    setLoading(false)
+                    onClose()
+                    setClients([...clients, data.user])
+            }
+        } catch (error) {
             toast({
                 position: 'top-right',
                 title: "Error",
@@ -117,6 +110,7 @@ export default function Clients() {
                 isClosable: true
             })
             setLoading(false)
+            console.log(error)
         }
     }
 
@@ -231,17 +225,16 @@ export default function Clients() {
                     pb={4}
                     >
 
-                    <ButtonGroup d="flex" justifyContent="flex-end">
-                        <Button colorScheme="teal" onClick={console.log("kwenkwek")} > Save </Button>
-                    </ButtonGroup>
+                        <Button colorScheme="teal" > Save </Button>
+
                     </PopoverFooter>
 
             </PopoverContent>
             </Popover>
-
-
             </Td>
-            <Td ><Button colorScheme="red" size="xs" onClick={() => setIsOpenConfirm(true)}>Borrar</Button>
+
+            <Td >
+            <Button colorScheme="red" size="xs" onClick={() => setIsOpenConfirm(true)}>Borrar</Button>
             <AlertDialog
                 isOpen={isOpenConfirm}
                 leastDestructiveRef={cancelRef}

@@ -1,7 +1,7 @@
 import { Box, Container, Flex, Stack, Image, Text, Link, Heading } from '@chakra-ui/react'
 import React from 'react'
 
-import Logo from '@assets/images/logo.jpg'
+import Logo from '@assets/images/logo.png'
 
 const Footer = () => {
     return(
@@ -10,36 +10,29 @@ const Footer = () => {
         color="white" >
         <Container as={Stack} maxW={'6xl'} py={10}>
         <Flex justifyContent="space-around">
-            <Stack spacing={6}>
+            <Stack>
               <Box>
-                <Image src={Logo} borderRadius="full" boxSize="150px"/>
+                <Image src={Logo} w="350px" h="180"/>
               </Box>
               <Text fontSize={'sm'}>
-                © 2020 Chakra Templates. All rights reserved
+                © 2021 Amira. All rights reserved
               </Text>
             </Stack>
             <Stack align={'flex-start'} alignItems="center">
-              <Heading>Product</Heading>
-              <Link href={'#'}>Overview</Link>
-              <Link href={'#'}>Featured</Link>
-              <Link href={'#'}>Releases</Link>
+              <Heading>Productos</Heading>
+              <Link href={'#'}>Ver todo</Link>
+              <Link href={'#'}>Lo nuevo</Link>
+              <Link href={'#'}>Próximamente</Link>
             </Stack>
             <Stack align={'flex-start'} alignItems="center">
-              <Heading>Company</Heading>
-              <Link href={'#'}>About</Link>
-              <Link href={'#'}>Press</Link>
-              <Link href={'#'}>Contact</Link>
-              <Link href={'#'}>Partners</Link>
+              <Heading>Empresa</Heading>
+              <Link href={'#'}>Nosotros</Link>
+              <Link href={'#'}>Contacto</Link>
+              <Link href={'#'}>Socios</Link>
             </Stack>
+
             <Stack align={'flex-start'} alignItems="center">
-              <Heading>Support</Heading>
-              <Link href={'#'}>Terms of Service</Link>
-              <Link href={'#'}>Privacy Policy</Link>
-              <Link href={'#'}>Help Center</Link>
-              <Link href={'#'}>Legal</Link>
-            </Stack>
-            <Stack align={'flex-start'} alignItems="center">
-              <Heading>Follow Us</Heading>
+              <Heading>¡Síguenos!</Heading>
               <Link href={'#'}>Facebook</Link>
               <Link href={'#'}>Twitter</Link>
               <Link href={'#'}>Instagram</Link>
