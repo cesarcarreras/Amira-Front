@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from 'react'
 import {allProductsEP} from '@services/product-ws'
-import { Banner, Footer, Navbar, Newsletter, ProductBanner, ProductCard, ShopCart } from '@components'
+import { Footer, Navbar, Newsletter, ProductBanner, ProductCard, ShopCart } from '@components'
 import { Badge, Box, Flex, useToast } from '@chakra-ui/react'
 import bgPicture from '@assets/images/background-products.jpg'
 
@@ -88,15 +88,16 @@ export default function Products() {
 
     return (
         <>
-        <Flex>
-            <Navbar/>
+        <Navbar/>
+             <Flex justify="flex-end" mr="45%">
             <ShopCart onAdd={onAdd} onRemove={onRemove} removeAll={removeAll} cartItems={cartItems} countCartItems={cartItems.length}/>
-            <Box >
+            <Box ml="6px" >
             {countCartItems ? (
-                <Badge colorScheme="red" color="white" borderRadius="full" >{countCartItems}</Badge>
+                <Badge colorScheme="red" color="white" borderRadius="full" w="16px" >{countCartItems}</Badge>
             ) : ('')}
             </Box>
-        </Flex>
+            </Flex>
+
             <ProductBanner bgImage={bgPicture} />
 
             <Flex p={6} m="10px" wrap="wrap" justifyContent="space-around" alignItems="center" alignContent="center">

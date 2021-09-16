@@ -24,6 +24,8 @@ export default function SignupForm(props){
                                 placeholder={input.placeholder}
                                 mb={5}
                                 variant="flushed"
+                                className="body-font"
+                                isRequired
                             />
                         </InputGroup>
                     </Box>
@@ -34,13 +36,15 @@ export default function SignupForm(props){
                     isLoading={loading}
                     width="30%"
                     size="lg"
-                    backgroundColor="blue.900"
+                    backgroundColor="blue.100"
                     variant="solid"
                     type="submit"
                     alignSelf="center"
                     borderColor="white"
                     boxShadow="xl"
                     color="white"
+                    className="body-font"
+                    borderRadius="30px"
                 >Registrarse</Button>
             </Box>
         </Flex>

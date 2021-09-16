@@ -1,8 +1,23 @@
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
+import { useHistory } from 'react-router-dom';
+import { useToast } from "@chakra-ui/react"
+
 
 export default function Paypal(){
 
+    const history = useHistory()
+
+    const toast = useToast()
+
     const paypal = useRef()
+
+    const [newOrder, setOrder] = useState(JSON.parse(localStorage.getItem("orderLocal")) || [])
+
+    console.log(newOrder)
+
+    const handleStatusUpdate = () => {
+
+    }
 
     useEffect(() => {
         window.paypal.Buttons({
@@ -11,10 +26,10 @@ export default function Paypal(){
                     intent: "CAPTURE",
                     purchase_units: [
                         {
-                            description: "Un jabomsito",
+                            description: `${newOrder._products.length} Jabones de Amira`,
                             amount: {
                                 currency_code: "MXN",
-                                value: 100.00
+                                value: newOrder.total
                             }
                         }
                     ]
@@ -22,10 +37,24 @@ export default function Paypal(){
             },
             onApprove: async (data, actions,) => {
                 const order = await actions.order.capture()
-                    console.log("Successful order", )
+
+                toast({
+                    title: "Pago completado correctamente",
+                    status: "success",
+                    duration: 3000,
+                    isClosable: true,
+                  })
+                    handleStatusUpdate()
+                    history.push('/payment-confirmation')
             },
             onError: (err) => {
                 console.log(err)
+                toast({
+                    title: "Pago no ha sido completado",
+                    status: "error",
+                    duration: 4000,
+                    isClosable: true,
+                  })
             }
         }).render(paypal.current)
     }, [])

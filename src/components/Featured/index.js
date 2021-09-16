@@ -1,5 +1,5 @@
 import React from 'react';
-import { Box, Flex, Spacer, Image, Heading, Text, Button, Badge } from '@chakra-ui/react';
+import { Flex, Image, Heading, Text, Button, Badge } from '@chakra-ui/react';
 
 import featuredImage from '@assets/images/lavanda-palo-rosa.png'
 

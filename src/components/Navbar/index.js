@@ -7,10 +7,9 @@ import {
   MenuList,
   MenuItem,
   Button,
-  Spacer,
 } from '@chakra-ui/react';
 
-import { HamburgerIcon, ChatIcon, InfoIcon, SunIcon } from '@chakra-ui/icons'
+import { HamburgerIcon } from '@chakra-ui/icons'
 
 import Logo from '@assets/images/logo.png'
 

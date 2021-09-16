@@ -8,7 +8,6 @@ import { Heading,
     Text,
     Stack,
     Button,
-    Badge,
     useColorModeValue,} from '@chakra-ui/react'
 import { orderDetailEP } from '@services/order-ws'
 import { oneUser } from '@services/user-ws'

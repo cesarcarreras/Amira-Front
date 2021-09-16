@@ -29,7 +29,9 @@ import { useHistory } from 'react-router-dom';
   export default function ProductsCard(props) {
 
     const history = useHistory()
-    console.log(props)
+
+    const {product, onAdd} = props
+
     const { isOpen, onOpen, onClose } = useDisclosure()
 
 
@@ -47,13 +49,13 @@ import { useHistory } from 'react-router-dom';
           textAlign={'center'}>
           <Avatar
             size={'xl'}
-            src={props?.img}
+            src={product?.img}
             alt={'Avatar Alt'}
             mb={4}
             pos={'relative'}
           />
           <Heading fontSize={'2xl'} fontFamily={'body'}>
-            {props?.title}
+            {product?.title}
             <Badge ml="1" colorScheme="green">
         New
       </Badge>
@@ -63,7 +65,7 @@ import { useHistory } from 'react-router-dom';
             textAlign={'center'}
             color={useColorModeValue('gray.700', 'gray.400')}
             px={1}>
-              €{props?.price} EUR
+              ${product?.price} MXN
           </Text>
 
           <Stack mt={8} direction={'row'} spacing={4}>
@@ -86,19 +88,19 @@ import { useHistory } from 'react-router-dom';
       >
         <ModalOverlay />
         <ModalContent>
-          <ModalHeader>{props?.title}</ModalHeader>
+          <ModalHeader>{product?.title}</ModalHeader>
           <ModalCloseButton />
           <ModalBody pb={6}>
           <Flex justifyContent="center" alignContent="center" alignItems="center">
-          <Image src={props?.img} alt="Soap image" borderRadius="full" boxSize="150px" />
+          <Image src={product?.img} alt="Soap image" borderRadius="full" boxSize="150px" />
           <Container>
-          {props?.description}
+          {product?.description}
         </Container>
         </Flex>
           </ModalBody>
 
           <ModalFooter>
-            <Button colorScheme="blue" mr={3}>
+            <Button colorScheme="blue" mr={3} onClick={() => onAdd(product)}>
               Comprar
             </Button>
             <Button onClick={onClose}>Cerrar</Button>
@@ -107,7 +109,7 @@ import { useHistory } from 'react-router-dom';
       </Modal>
 
             <Button
-              onClick={() => history.push('/products')}
+              onClick={() => onAdd(product)}
               flex={1}
               fontSize={'sm'}
               rounded={'full'}
