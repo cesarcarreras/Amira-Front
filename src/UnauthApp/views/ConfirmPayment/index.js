@@ -30,9 +30,7 @@ export default function ConfirmPayment() {
         .catch(err => console.log(err))
     }, [])
 
-        console.log("Que nos trae el user: ", user)
-        console.log("Es es el order :", order)
-        console.log("Es es el cartItems :", cartItems)
+    console.log(order.iva)
     return (
         <>
  <Center py={6}>
@@ -91,36 +89,30 @@ export default function ConfirmPayment() {
         <Stack align={'center'} justify={'center'} direction={'row'} mt={6}>
 
           {cartItems.map(item => (
-            <Box flexDirection='row' overflow="scroll">
+            <Box flexDirection='row' overflow="scroll" key={item._id}>
               <Avatar src={item.img[0]} />
                 <Text>{item.title}</Text>
-                <Text> qty:{item.qty} €{item.price}</Text>
+                <Text> Cantidad:{item.qty} ${item.price}</Text>
                 </Box>
             ))}
         </Stack>
 
         <Flex ml="30px" mr="30px" mt="30px">
-            <Text>Total Productos</Text>
+            <Text>IVA 16%</Text>
             <Spacer/>
-            <Text>€{order.total}</Text>
-        </Flex>
-
-        <Flex ml="30px" mr="30px">
-            <Text>IVA 21%</Text>
-            <Spacer/>
-            <Text>€{order.total}</Text>
+            <Text>${order.iva}</Text>
         </Flex>
 
         <Flex ml="30px" mr="30px">
             <Text>Envío</Text>
             <Spacer/>
-            <Text>€{order.total}</Text>
+            <Text>${order.shippingPrice}</Text>
         </Flex>
 
         <Flex ml="30px" mr="30px">
             <Text>Total</Text>
             <Spacer/>
-            <Text>€{order.total}</Text>
+            <Text>${order.total}</Text>
         </Flex>
 
         <Stack mt={8} direction={'row'} spacing={4}>

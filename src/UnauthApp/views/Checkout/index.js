@@ -21,8 +21,8 @@ export default function Checkout(){
    const [order, setOrder] = useState(JSON.parse(localStorage.getItem("orderLocal")) || [])
 
    const itemsPrice = cartItems.reduce((acc, current) => acc + current.price * current.qty, 0);
-   const taxPrice = itemsPrice * 0.21;
-   const shippingPrice = itemsPrice > 50 ? 0 : 5.99;
+   const taxPrice = itemsPrice * 0.16;
+   const shippingPrice = itemsPrice > 500 ? 0 : 59.99;
    const totalPrice = itemsPrice + taxPrice + shippingPrice;
 
    const [isOpen, setIsOpen] = useState(false)
@@ -57,6 +57,8 @@ export default function Checkout(){
       const user = await handleAsync(() => createUserEP(data))
 
       const Orderdata = {
+         iva: taxPrice.toFixed(2),
+         shippingPrice: shippingPrice.toFixed(2),
          total: totalPrice.toFixed(2),
          _user: user._id,
          _products: cartItems,
@@ -102,6 +104,19 @@ export default function Checkout(){
    setUser(undefined)
   }
 
+  const handleMP = () => {
+
+   toast({
+      position: 'top-right',
+      title: "¡Muy pronto!",
+      description: "Estamos trabajando en ello, pronto estará disponible 😉 ",
+      status: 'info',
+      duration: 5000,
+      isClosable: true
+  })
+
+  }
+
    const inputs = [
       {
           placeholder : 'James',
@@ -140,7 +155,7 @@ export default function Checkout(){
           control: {...birthday}
       }
    ]
-console.log(user)
+
    return(
       <Flex alignItems="center" direction="column" backgroundColor="coral.100" >
 
@@ -162,7 +177,7 @@ console.log(user)
 
                      <AlertDialogBody>
                      <Flex justify="space-around" alignItems="center" >
-                     <Button onClick={onClose}>
+                     <Button onClick={handleMP}>
                         MercadoPago
                      </Button>
 
@@ -190,12 +205,12 @@ console.log(user)
          <Box w="50%" h="70vh" borderRadius="lg" overflow="hidden" borderRadius="30px">
        { user ?
        <>
-         <Heading>¡Hola, {user[0].name}!</Heading>
+         <Heading>¡Hola, {user[0]?.name}!</Heading>
          <Flex direction="column">
            <Text> ¿Tus datos son correctos?</Text>
-           <Text> Correo: {user[0].email} </Text>
-           <Text> Dirección: {user[0].address} </Text>
-           <Text> Número de Telefono: {user[0].phone} </Text>
+           <Text> Correo: {user[0]?.email} </Text>
+           <Text> Dirección: {user[0]?.address} </Text>
+           <Text> Número de Telefono: {user[0]?.phone} </Text>
          </Flex>
 
          <Flex mt={20}>
@@ -203,7 +218,7 @@ console.log(user)
          </Flex>
 
          <Flex mt={20}>
-             <Text>¿Falló el pago?, !Intentalo nuevamente!</Text><Button>Pagar</Button>
+             <Text>¿Falló el pago?, !Intentalo nuevamente!</Text><Button onClick={() => setIsOpen(true)}>Pagar</Button>
          </Flex>
          </>
        :
@@ -218,7 +233,7 @@ console.log(user)
                   {cartItems.map((item) => (
                      <Box w="100%" m="10px" key={item._id} className="header-font">
                         <Flex justify="center" alignContent="space-around" direction="column" >
-                              <Avatar w="100px" h="80px" src={item.img}/>
+                              <Avatar w="100px" h="80px" src={item.img} size="2xl"/>
                            <Flex direction="column" ml="40px" mt="20px">
                               <Text >{item.title}</Text>
                               <Text> cantidad: {item.qty} ${item.price}</Text>
@@ -238,7 +253,7 @@ console.log(user)
                         </Flex>
 
                         <Flex ml="30px" mr="30px">
-                           <Text>IVA 21%</Text>
+                           <Text>IVA 16%</Text>
                            <Spacer/>
                            <Text>${taxPrice.toFixed(2)}</Text>
                         </Flex>
@@ -250,9 +265,9 @@ console.log(user)
                         </Flex>
                          <hr/>
                         <Flex ml="30px" mr="30px" mt="10px">
-                           <Text>Total</Text>
+                           <Text fontWeight="bold">Total</Text>
                            <Spacer/>
-                           <Text>${totalPrice.toFixed(2)}</Text>
+                           <Text fontWeight="bold">${totalPrice.toFixed(2)}</Text>
                         </Flex>
                   </Box>
                </Flex>

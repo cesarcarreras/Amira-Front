@@ -5,20 +5,17 @@ import {useAuth} from '@utils/AuthContext'
 import Routes from '../../AuthApp/Routes'
 
 import { HamburgerIcon, PhoneIcon, AtSignIcon, SunIcon, UpDownIcon, WarningIcon, CloseIcon } from '@chakra-ui/icons'
-import Logout from '../Logout';
 
 
 export default function Sidebar(props){
     const [navSize, changeNavSize] = useState('large')
     const [{user}] = useAuth()
 
-    const {isOpen} = props
-
     const setLinks = () =>{
         return Routes.map(function({label, path, type}){
             if(type === 'menu')
             return <Box key={path} fontSize={['sm', 'md', 'lg', 'xl']} mt={[3,3,5,5]} mb={[3,3,5,5]}>
-                        <NavLink activeStyle={{fontWeight: 'bold'}} style={{color:'black'}} exact to={path}>
+                        <NavLink activeStyle={{fontWeight: 'bold'}} style={{color:'black'}} exact to={path} className="header-font">
                             {
                             navSize === 'small' && label === 'Dashboard' ? <PhoneIcon/> :
                             navSize === 'small' && label === 'Products' ? <AtSignIcon/> :
@@ -42,11 +39,13 @@ export default function Sidebar(props){
               mt="2.5vh"
               boxShadow="0 4px 12px 0 rgba(0, 0, 0, 0.5)"
               borderEndRadius={navSize === 'small' ? "15px" : "30px"}
-              w={navSize === 'small' ? "75px" : "200px"}
+              w={navSize === 'small' ? "75px" : "250px"}
               direction="column"
-              justifyContent="space-between" >
+              justifyContent="space-between"
+              borderRadius="50px"
+               >
 
-              <Flex p="5%"
+              <Flex p="15%"
                     direction="column"
                     w="100%"
                     alignItems={navSize === "small" ? "center" : "flex-start"}
@@ -62,10 +61,6 @@ export default function Sidebar(props){
                     {setLinks()}
 
               </Flex>
-
-              <Text>Logout</Text>
-              <Logout onClick={() => isOpen(true)}>
-              </Logout>
 
               <Flex p="5%"
                     direction="column"

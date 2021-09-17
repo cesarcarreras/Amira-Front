@@ -36,12 +36,6 @@ export default [
         Component: () =>( <PageSection> <Profile/> </PageSection> )
     },
     {
-        path: '/dashboard/logout',
-        label: 'Logout',
-        type: 'menu',
-        Component: () =>(<Logout/>)
-    },
-    {
       path: '/dashboard/404',
       label: 'Not found',
       type: 'none',
