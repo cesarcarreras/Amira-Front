@@ -1,5 +1,5 @@
 import React from 'react';
-import { Box, Flex, Spacer, Image, Heading, Text, Button, Badge } from '@chakra-ui/react';
+import { Flex, Image, Heading, Text, Button, Badge } from '@chakra-ui/react';
 
 import featuredImage from '@assets/images/lavanda-palo-rosa.png'
 
@@ -13,10 +13,7 @@ export default function Featured() {
             <Flex direction="row">
                 <Heading fontSize="54px" className="header-font">Jabón de Lavanda & Palo de Rosa  <Badge borderRadius="full" h="20px" colorScheme="teal" className="body-font" >NEW</Badge></Heading>
                 </Flex>
-                <Text mt={6} >Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis semper viverra libero.
-                 Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos.
-                 Morbi non metus consectetur, porttitor nisl sed, malesuada diam.
-                 lacus dui vitae diam. Maecenas facilisis ex non lacus condimentum sollicitudin quis non tellus.</Text>
+                <Text mt={6} >Jabón natural de lavanda artesanal fabricado con aceites esenciales, especialmente de oliva, lavandín y lavanda. Tiene propiedades antisépticas, previene el acné y ayuda a tratar inflamaciones, quemaduras y afecciones cutáneas como la psoriasis.</Text>
                  <Button as="a" href="/products" mt={10} colorScheme="blue" w="130px" >Comprar</Button>
             </Flex>
         </Flex>

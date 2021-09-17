@@ -21,12 +21,15 @@ export default function Checkout(){
    const [order, setOrder] = useState(JSON.parse(localStorage.getItem("orderLocal")) || [])
 
    const itemsPrice = cartItems.reduce((acc, current) => acc + current.price * current.qty, 0);
-   const taxPrice = itemsPrice * 0.21;
-   const shippingPrice = itemsPrice > 50 ? 0 : 5.99;
+   const taxPrice = itemsPrice * 0.16;
+   const shippingPrice = itemsPrice > 500 ? 0 : 59.99;
    const totalPrice = itemsPrice + taxPrice + shippingPrice;
 
    const [isOpen, setIsOpen] = useState(false)
-   const onClose = () => setIsOpen(false)
+   const onClose = () => {
+      window.location.reload();
+      setIsOpen(false)
+   }
    const cancelRef = useRef()
 
    const toast = useToast()
@@ -43,7 +46,6 @@ export default function Checkout(){
    const [loading, setLoading] = useState(false)
 
    const handleCreateUser = async e => {
-      setIsOpen(true) //<--- QUITAR ESTO DESPUES DE PRUEBAS
       e.preventDefault()
       setLoading(true)
       const data = {
@@ -58,6 +60,8 @@ export default function Checkout(){
       const user = await handleAsync(() => createUserEP(data))
 
       const Orderdata = {
+         iva: taxPrice.toFixed(2),
+         shippingPrice: shippingPrice.toFixed(2),
          total: totalPrice.toFixed(2),
          _user: user._id,
          _products: cartItems,
@@ -69,8 +73,6 @@ export default function Checkout(){
       if(order){
          localStorage.setItem("orderLocal", JSON.stringify(order))
       }
-
-      console.log(order)
 
       setUser(user)
       if(user){
@@ -97,14 +99,25 @@ export default function Checkout(){
           })
           setLoading(false)
       }
-
-      console.log(user)
   };
 
   const handleDelete = (id) => {
    deleteUserEP(id)
    localStorage.removeItem("userLocal")
    setUser(undefined)
+  }
+
+  const handleMP = () => {
+
+   toast({
+      position: 'top-right',
+      title: "¡Muy pronto!",
+      description: "Estamos trabajando en ello, pronto estará disponible 😉 ",
+      status: 'info',
+      duration: 5000,
+      isClosable: true
+  })
+
   }
 
    const inputs = [
@@ -147,8 +160,12 @@ export default function Checkout(){
    ]
 
    return(
-      <Flex alignItems="center" direction="column">
-      <Flex justify="center" alignItems="center" w="100%" h="100vh" backgroundColor="coral.500">
+      <Flex alignItems="center" direction="column" backgroundColor="coral.100" >
+
+      <Flex mt="50px">
+      <Heading className="header-font" color="#fbf6f7">¡Registrate para continuar con tu compra!</Heading>
+      </Flex>
+      <Flex justify="center" alignItems="center" w="100%" h="100vh" mt="-50px">
            <AlertDialog
                isOpen={isOpen}
                leastDestructiveRef={cancelRef}
@@ -163,7 +180,7 @@ export default function Checkout(){
 
                      <AlertDialogBody>
                      <Flex justify="space-around" alignItems="center" >
-                     <Button onClick={onClose}>
+                     <Button onClick={handleMP}>
                         MercadoPago
                      </Button>
 
@@ -185,80 +202,75 @@ export default function Checkout(){
 
 
 
-         <Box w="80vw" h="70vh" borderWidth="1px" borderRadius="lg" overflow="hidden" borderRadius="30px" backgroundColor="white">
+         <Box w="80vw" h="70vh" overflow="hidden" backgroundColor="#fbf6f7" boxShadow="2xl" p="6" borderRadius="60px">
          <Flex>
 
-         <Box w="50%" h="70vh" borderWidth="1px" borderRadius="lg" overflow="hidden" borderRadius="30px">
+         <Box w="50%" h="70vh" borderRadius="lg" overflow="hidden" borderRadius="30px">
        { user ?
        <>
-         <Heading>¡Hola, {user.name}!</Heading>
+         <Heading>¡Hola, {user[0]?.name}!</Heading>
          <Flex direction="column">
            <Text> ¿Tus datos son correctos?</Text>
-           <Text> Correo: {user.email} </Text>
-           <Text> Dirección: {user.address} </Text>
-           <Text> Número de Telefono: {user.phone} </Text>
+           <Text> Correo: {user[0]?.email} </Text>
+           <Text> Dirección: {user[0]?.address} </Text>
+           <Text> Número de Telefono: {user[0]?.phone} </Text>
          </Flex>
 
          <Flex mt={20}>
-             <Text>¿Algún dato es incorrecto?</Text><Button onClick={() => handleDelete(user._id)} >Editar</Button>
+             <Text>¿Algún dato es incorrecto?</Text><Button onClick={() => handleDelete(user[0]._id)} >Editar</Button>
          </Flex>
 
          <Flex mt={20}>
-             <Text>¿Falló el pago?, !Intentalo nuevamente!</Text><Button>Pagar</Button>
+             <Text>¿Falló el pago?, !Intentalo nuevamente!</Text><Button onClick={() => setIsOpen(true)}>Pagar</Button>
          </Flex>
          </>
        :
-         <SignupForm  inputs={inputs} actionButton={handleCreateUser} loading={loading}/>
+          <SignupForm  inputs={inputs} actionButton={handleCreateUser} loading={loading}/>
        }
+
          </Box>
 
-            <Flex direction="column" w="50%">
-               <Box w="100%" h="350px" borderWidth="1px" borderRadius="lg" overflow="hidden" borderRadius="30px" overflow="scroll" >
-                  <Flex justify="center">
-                     <Text>Order Summary</Text>
-                  </Flex>
-
-                  <Flex direction="column">
+            <Flex direction="column" w="40%">
+               <Box w="100%" h="250px"  overflow="scroll" >
+                  <Flex direction="row" justify="center" alignItems="center" alignContent="center">
                   {cartItems.map((item) => (
-                     <Box w="100%" m="10px" key={item._id}>
-                        <Flex justify="center" alignContent="space-around" >
-                              <Avatar w="100px" h="80px" src={item.img}/>
-                           <Flex direction="column" ml="40px" >
-                              <Text>{item.title}</Text>
-                              <Text>{item.description}</Text>
-                              <Text> qty:{item.qty} €{item.price}</Text>
+                     <Box w="100%" m="10px" key={item._id} className="header-font">
+                        <Flex justify="center" alignContent="space-around" direction="column" >
+                              <Avatar w="100px" h="80px" src={item.img} size="2xl"/>
+                           <Flex direction="column" ml="40px" mt="20px">
+                              <Text >{item.title}</Text>
+                              <Text> cantidad: {item.qty} ${item.price}</Text>
                            </Flex>
                         </Flex>
                      </Box>
                   ))}
-                  <Button m="20px" onClick={() => history.push('/products')}>Añadir más productos</Button>
                   </Flex>
                   </Box>
+                  <Button className="header-font" w="180px" mb="40px" ml="30%" borderRadius="50px" onClick={() => history.push('/products')} backgroundColor="#fefdfe" boxShadow="2xl" p="6" >Añadir productos</Button>
+                 <Box w="100%" h="150px" backgroundColor="blue.100" color="white" borderRadius="30px" className="header-font">
 
-                 <Box w="100%" h="150px" borderWidth="1px" borderRadius="lg" overflow="hidden" borderRadius="30px">
-
-                        <Flex ml="30px" mr="30px" mt="30px">
+                        <Flex ml="30px" mr="30px" mt="10px">
                            <Text>Total Productos</Text>
                            <Spacer/>
-                           <Text>€{itemsPrice.toFixed(2)}</Text>
+                           <Text>${itemsPrice.toFixed(2)}</Text>
                         </Flex>
 
                         <Flex ml="30px" mr="30px">
-                           <Text>IVA 21%</Text>
+                           <Text>IVA 16%</Text>
                            <Spacer/>
-                           <Text>€{taxPrice.toFixed(2)}</Text>
+                           <Text>${taxPrice.toFixed(2)}</Text>
                         </Flex>
 
-                        <Flex ml="30px" mr="30px">
+                        <Flex ml="30px" mr="30px" mb="15px">
                            <Text>Envío</Text>
                            <Spacer/>
-                           <Text>€{shippingPrice.toFixed(2)}</Text>
+                           <Text>${shippingPrice.toFixed(2)}</Text>
                         </Flex>
-
-                        <Flex ml="30px" mr="30px" mt="20px">
-                           <Text>Total</Text>
+                         <hr/>
+                        <Flex ml="30px" mr="30px" mt="10px">
+                           <Text fontWeight="bold">Total</Text>
                            <Spacer/>
-                           <Text>€{totalPrice.toFixed(2)}</Text>
+                           <Text fontWeight="bold">${totalPrice.toFixed(2)}</Text>
                         </Flex>
                   </Box>
                </Flex>

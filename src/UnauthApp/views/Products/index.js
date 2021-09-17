@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from 'react'
 import {allProductsEP} from '@services/product-ws'
-import { Banner, Footer, Navbar, Newsletter, ProductCard, ShopCart } from '@components'
+import { Footer, Navbar, Newsletter, ProductBanner, ProductCard, ShopCart, Header} from '@components'
 import { Badge, Box, Flex, useToast } from '@chakra-ui/react'
 import bgPicture from '@assets/images/background-products.jpg'
 
@@ -51,27 +51,34 @@ export default function Products() {
             setCartItems([{...product, qty: 1}])
         }
     }
+    const id = "promot-toast"
+
+    window.onload = () => promoToast()
+
+    const promoToast = () => {
+
+        if(!toast.isActive(id)) {
+            toast({
+                position: 'top-right',
+                title: "Aprovecha envío gratis en compras superiores a $500 MXN ",
+                status: 'info',
+                duration: 8000,
+                isClosable: true,
+            })
+        }
+    }
+
 
 
     const onRemove = (product) => {
-            let newCart = JSON.parse(localStorage.getItem("cartItems"))
-
-            const exist = newCart.find( x => x._id === product._id)
-            console.log(exist.qty)
-
-            if(exist.qty >= 1){
-                let updatedCartQTY = []
-                let removeQTY = newCart.find(x => x._id === exist._id)
-                removeQTY.qty = removeQTY.qty - 1
-                updatedCartQTY.push(removeQTY)
-                newCart = newCart.map(obj => updatedCartQTY.find(o => o._id === obj._id) || obj);
-                localStorage.removeItem("cartItems")
-                countCartItems--
-            } else {
-                localStorage.removeItem("cartItems")
-                setCartItems([])
-            }
-            countCartItems--
+        localStorage.removeItem("cartItems")
+        setCartItems([])
+        toast({
+            position: 'top-right',
+            title: "Carrito se vació correctamente",
+            status: 'success',
+            duration: 2000,
+        })
     }
 
     const removeAll = () => {
@@ -88,16 +95,17 @@ export default function Products() {
 
     return (
         <>
-        <Flex>
-            <Navbar/>
+        <Navbar/>
+             <Flex justify="flex-end" mr="45%">
             <ShopCart onAdd={onAdd} onRemove={onRemove} removeAll={removeAll} cartItems={cartItems} countCartItems={cartItems.length}/>
-            <Box >
+            <Box ml="6px" >
             {countCartItems ? (
-                <Badge colorScheme="red" color="white" borderRadius="full" >{countCartItems}</Badge>
+                <Badge colorScheme="red" color="white" borderRadius="full" w="16px" >{countCartItems}</Badge>
             ) : ('')}
             </Box>
-        </Flex>
-            <Banner bgImage={bgPicture} />
+            </Flex>
+
+            <ProductBanner bgImage={bgPicture} />
 
             <Flex p={6} m="10px" wrap="wrap" justifyContent="space-around" alignItems="center" alignContent="center">
             { products.map(product => {

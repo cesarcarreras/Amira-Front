@@ -9,36 +9,38 @@ export default function ShopCart(props) {
 
     const history = useHistory()
 
-    // const [cartItems, setItems] = useState( props.cartItems || JSON.parse(localStorage.getItem("cartItems")))
-
-     const goToCheckout = () => history.push('/checkout')
-
-    //  useEffect(() => {
-    //     setItems(props.cartItems)
-    //  }, [props.cartItems.length])
+    const goToCheckout = () => history.push('/checkout')
 
     return (
         <Popover>
         <PopoverTrigger>
-            <Button>Ver Carrito</Button>
+            <Button colorScheme="blue">Ver Carrito</Button>
         </PopoverTrigger>
+
         <Portal>
             <PopoverContent w="450px">
             <PopoverCloseButton />
             <PopoverBody>
-
              {props.cartItems !== undefined && props.cartItems.length ? props.cartItems.map((item) => (
-                <Box key={item._id} borderColor="blue" borderWidth="1px" p={1} >
-                <Flex>
-                    <Avatar src={item.img[0]} w="100px" size="lg" />
+                <Box key={item._id} p={1} >
+                <Flex direction="row">
+                    <Flex p="10px">
+                     <Avatar src={item.img[0]} borderRadius="full" w="100px" h="100px" />
+                    </Flex>
+
+
                  <Flex direction="column">
-                    <Heading>{item.title}</Heading>
-                 <Flex direction="row">
+                    <Heading className="header-font" fontSize="26px">{item.title}</Heading>
+
+                 <Flex direction="row" p="10px">
                    <Button onClick={() => onAdd(item)}>+</Button>
                     <Button onClick={() => onRemove(item)}>-</Button>
                 </Flex>
                  </Flex>
-                        {item.qty} X €{item.price.toFixed(2)}
+                 <Flex alignItems="flex-end" p="15px">
+                     <Text className="body-font"> {item.qty} x ${item.price.toFixed(2)} </Text>
+                 </Flex>
+
                 </Flex>
                 </Box>
             )) :
@@ -50,9 +52,11 @@ export default function ShopCart(props) {
 
             </PopoverBody>
             { props.cartItems !== undefined && props.cartItems.length ?
-            <PopoverFooter>
-            <Button colorScheme="red" onClick={removeAll}>Vaciar Carrito</Button>
-            <Button colorScheme="blue" onClick={goToCheckout}>Pagar</Button>
+            <PopoverFooter borderColor="white" mt="10px">
+            <Flex justify="flex-end">
+                <Button colorScheme="red" onClick={removeAll} mr="5px">Vaciar Carrito</Button>
+                <Button colorScheme="blue" onClick={goToCheckout} ml="5px">Pagar</Button>
+            </Flex>
             </PopoverFooter>
             :<div></div>
             }

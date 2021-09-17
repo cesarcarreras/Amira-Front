@@ -6,7 +6,7 @@ const NotFound = () => {
     return(
             <Flex justify="center" alignItems="center" alignContent="center" direction="column" w="100vw" h="100vh">
                 <Heading >La página que estás buscando no se encuentra</Heading>
-                <Button as="a" href="/dashboard/home" >Ir al Home</Button>
+                <Button as="a" href="/" >Ir al Home</Button>
             </Flex>
     )
 }

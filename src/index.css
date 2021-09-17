@@ -1,7 +1,7 @@
 .header-font {
-    font-family: 'Merriweather', serif;
+    font-family: 'Merriweather', serif !important;
   }
 
 .body-font{
-    font-family: 'Roboto';
+    font-family: 'Roboto' !important;
 }
