@@ -118,6 +118,8 @@ export default function ConfirmPayment() {
 
         <Stack mt={8} direction={'row'} spacing={4}>
           <Button
+           as="a"
+            href="/products"
             flex={1}
             fontSize={'sm'}
             rounded={'full'}
@@ -148,7 +150,6 @@ export default function ConfirmPayment() {
         </Stack>
       </Box>
     </Center>
-  );
         </>
-    )
+     )
 };
