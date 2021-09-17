@@ -14,7 +14,7 @@ import { oneUser } from '@services/user-ws'
 
 export default function ConfirmPayment() {
     const [user, setUser] = useState(JSON.parse(localStorage.getItem("userLocal")) || [])
-    const [order, setOrder] = useState(JSON.parse(localStorage.getItem("orderLocal")) || [])
+    const [order, setOrder] = useState(JSON.parse(localStorage.getItem("orderLocal")))
     const [cartItems, setCartItems] = useState(JSON.parse(localStorage.getItem("cartItems")) || [])
 
     useEffect(() => {
@@ -25,12 +25,13 @@ export default function ConfirmPayment() {
 
 
     useEffect(() => {
-        orderDetailEP(order._id)
-        .then(order => setOrder(order.data.order))
+        orderDetailEP(order)
+        .then(order => setOrder(order.data.order._id))
         .catch(err => console.log(err))
     }, [])
 
-    console.log(order.iva)
+
+
     return (
         <>
  <Center py={6}>
@@ -52,7 +53,7 @@ export default function ConfirmPayment() {
           pos={'relative'}
         />
         <Heading fontSize={'2xl'} fontFamily={'body'}>
-        ¡Muchas gracias por tu compra, {user.name}!
+        ¡Muchas gracias por tu compra, {user?.name}!
         </Heading>
         <Text fontWeight={400} color={'gray.500'} mb={4}>
           En breve recibirás un correo de confirmación
@@ -62,21 +63,21 @@ export default function ConfirmPayment() {
           textAlign={'center'}
           color={useColorModeValue('gray.700', 'gray.400')}
           px={3}>
-          Nombre: {user.name}
+          Nombre: {user?.name}
         </Text>
 
         <Text
           textAlign={'center'}
           color={useColorModeValue('gray.700', 'gray.400')}
           px={3}>
-          Correo: {user.email}
+          Correo: {user?.email}
         </Text>
 
         <Text
           textAlign={'center'}
           color={useColorModeValue('gray.700', 'gray.400')}
           px={3}>
-          Dirección de Entrega: {user.address}
+          Dirección de Entrega: {user?.address}
         </Text>
 
         <Text
@@ -100,19 +101,19 @@ export default function ConfirmPayment() {
         <Flex ml="30px" mr="30px" mt="30px">
             <Text>IVA 16%</Text>
             <Spacer/>
-            <Text>${order.iva}</Text>
+            <Text>${order?.iva}</Text>
         </Flex>
 
         <Flex ml="30px" mr="30px">
             <Text>Envío</Text>
             <Spacer/>
-            <Text>${order.shippingPrice}</Text>
+            <Text>${order?.shippingPrice}</Text>
         </Flex>
 
         <Flex ml="30px" mr="30px">
             <Text>Total</Text>
             <Spacer/>
-            <Text>${order.total}</Text>
+            <Text>${order?.total}</Text>
         </Flex>
 
         <Stack mt={8} direction={'row'} spacing={4}>
@@ -126,6 +127,8 @@ export default function ConfirmPayment() {
             Seguir Comprando
           </Button>
           <Button
+            as="a"
+            href="/order-status"
             flex={1}
             fontSize={'sm'}
             rounded={'full'}

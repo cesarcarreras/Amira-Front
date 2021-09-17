@@ -52,9 +52,11 @@ export default function ShopCart(props) {
 
             </PopoverBody>
             { props.cartItems !== undefined && props.cartItems.length ?
-            <PopoverFooter>
-            <Button colorScheme="red" onClick={removeAll}>Vaciar Carrito</Button>
-            <Button colorScheme="blue" onClick={goToCheckout}>Pagar</Button>
+            <PopoverFooter borderColor="white" mt="10px">
+            <Flex justify="flex-end">
+                <Button colorScheme="red" onClick={removeAll} mr="5px">Vaciar Carrito</Button>
+                <Button colorScheme="blue" onClick={goToCheckout} ml="5px">Pagar</Button>
+            </Flex>
             </PopoverFooter>
             :<div></div>
             }

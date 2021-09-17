@@ -15,3 +15,4 @@ export {default as SignupForm} from './SignupForm';
 export {default as Logout} from './Logout';
 export {default as ProductBanner} from './BanProd';
 export {default as DataCard} from './DataCard';
+export {default as Header} from './Header'

@@ -26,7 +26,10 @@ export default function Checkout(){
    const totalPrice = itemsPrice + taxPrice + shippingPrice;
 
    const [isOpen, setIsOpen] = useState(false)
-   const onClose = () => setIsOpen(false)
+   const onClose = () => {
+      window.location.reload();
+      setIsOpen(false)
+   }
    const cancelRef = useRef()
 
    const toast = useToast()
